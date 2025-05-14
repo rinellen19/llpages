@@ -1,0 +1,1132 @@
+<!DOCTYPE html><html lang="es"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAV Collection Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Montserrat:wght@800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff3e78;
+            --secondary-color: #5D5CDE;
+            --accent-color: #ffcc00;
+            --text-color: #333;
+            --bg-color: #fff;
+            --card-bg: #f9f9f9;
+            --heart-color: #ff6b9d;
+        }
+        
+        .dark {
+            --primary-color: #ff4081;
+            --secondary-color: #7a7aff;
+            --accent-color: #ffdd33;
+            --text-color: #f0f0f0;
+            --bg-color: #181818;
+            --card-bg: #242424;
+            --heart-color: #ff6b9d;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .app-title {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-badge {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff1a60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 62, 120, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #4b4acf;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(93, 92, 222, 0.3);
+        }
+        
+        .movie-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .movie-cover {
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .modal {
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .modal-content {
+            background-color: var(--bg-color);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .heart-rating input {
+            display: none;
+        }
+        
+        .heart-rating label {
+            cursor: pointer;
+            color: #ccc;
+            font-size: 24px;
+            transition: color 0.2s;
+        }
+        
+        .heart-rating label:hover,
+        .heart-rating label:hover ~ label,
+        .heart-rating input:checked ~ label {
+            color: var(--primary-color);
+        }
+        
+        .heart-color {
+            color: var(--heart-color) !important;
+        }
+        
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Animaciones para modales */
+        .modal-enter {
+            animation: modalFadeIn 0.3s forwards;
+        }
+        
+        .modal-content-enter {
+            animation: modalContentSlideIn 0.3s forwards;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes modalContentSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Animación de notificación */
+        .toast {
+            animation: toastFadeIn 0.3s, toastFadeOut 0.3s 2.7s;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes toastFadeIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes toastFadeOut {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-20px); opacity: 0; }
+        }
+
+        /* Para asegurar que las imágenes se vean completas en la ventana de vista */
+        .movie-detail-cover {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            min-height: 400px;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-8">
+    <!-- Header con Título y Modo Oscuro -->
+    <header class="py-4 px-6 flex justify-between items-center">
+        <h1 class="app-title text-3xl md:text-4xl font-extrabold">
+            <i class="fas fa-film mr-2"></i>JAV Collection
+        </h1>
+        <button id="darkModeToggle" class="p-2 rounded-full focus:outline-none">
+            <i class="fas fa-moon text-xl"></i>
+        </button>
+    </header>
+    
+    <!-- Barra de Búsqueda y Botón Añadir -->
+    <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="relative flex-grow max-w-2xl w-full">
+            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input id="searchInput" type="text" class="w-full bg-gray-100 dark:bg-gray-800 text-base py-3 pl-12 pr-4 rounded-full focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar por código, título, actriz o sinopsis...">
+        </div>
+        <button id="addMovieBtn" class="btn-primary flex items-center gap-2 whitespace-nowrap py-3 px-6 rounded-full font-semibold">
+            <i class="fas fa-plus"></i>
+            <span>Añadir Película</span>
+        </button>
+    </div>
+    
+    <!-- Filtros y Vistas -->
+    <div class="container mx-auto px-4 py-2">
+        <div class="flex flex-col md:flex-row justify-between gap-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+            <div class="flex flex-wrap gap-2 items-center">
+                <span class="text-sm font-semibold"><i class="fas fa-filter mr-1"></i> Filtros:</span>
+                
+                <!-- Filtro por Actriz -->
+                <div class="relative">
+                    <select id="actressFilter" class="bg-white dark:bg-gray-700 text-base py-2 pl-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+                        <option value="">Todas las actrices</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Filtro por Distribuidora -->
+                <div class="relative">
+                    <select id="studioFilter" class="bg-white dark:bg-gray-700 text-base py-2 pl-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+                        <option value="">Todas las distribuidoras</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Filtro por Rating -->
+                <div class="relative">
+                    <select id="ratingFilter" class="bg-white dark:bg-gray-700 text-base py-2 pl-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+                        <option value="">Todas las puntuaciones</option>
+                        <option value="5">5 corazones</option>
+                        <option value="4">4+ corazones</option>
+                        <option value="3">3+ corazones</option>
+                        <option value="2">2+ corazones</option>
+                        <option value="1">1+ corazones</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Ordenamiento -->
+                <div class="relative">
+                    <select id="sortBy" class="bg-white dark:bg-gray-700 text-base py-2 pl-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+                        <option value="newest">Más recientes</option>
+                        <option value="oldest">Más antiguos</option>
+                        <option value="rating">Mejor puntuación</option>
+                        <option value="code">Código (A-Z)</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Toggle Vista -->
+                <div class="flex bg-white dark:bg-gray-700 rounded-lg">
+                    <button id="gridViewBtn" class="px-3 py-2 rounded-l-lg bg-gray-200 dark:bg-gray-600">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button id="listViewBtn" class="px-3 py-2 rounded-r-lg">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contador de Películas -->
+    <div class="container mx-auto px-4 py-2">
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+            <span id="movieCount">0</span> películas encontradas
+        </p>
+    </div>
+    
+    <!-- Contenedor de Películas -->
+    <div class="container mx-auto px-4 py-4">
+        <div id="moviesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"></div>
+        <div id="moviesList" class="flex flex-col gap-4 hidden"></div>
+        
+        <!-- Estado vacío -->
+        <div id="emptyState" class="hidden py-12 flex flex-col items-center justify-center text-center">
+            <i class="fas fa-film text-6xl mb-4 text-gray-300 dark:text-gray-600"></i>
+            <h3 class="text-xl font-semibold mb-2">No hay películas registradas</h3>
+            <p class="text-gray-500 dark:text-gray-400 mb-6">Comienza añadiendo tu primera película</p>
+            <button id="emptyStateAddBtn" class="btn-primary py-3 px-6 rounded-full font-semibold flex items-center gap-2">
+                <i class="fas fa-plus"></i>
+                <span>Añadir Película</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Modal Añadir/Editar Película -->
+    <div id="movieFormModal" class="modal fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div id="formModalOverlay" class="modal-overlay absolute inset-0 bg-black opacity-50"></div>
+        <div class="modal-content w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 id="modalTitle" class="text-2xl font-bold">Añadir nueva película</h2>
+                    <button id="closeModalBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="movieForm" class="space-y-6">
+                    <input type="hidden" id="movieId">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="code" class="block text-sm font-medium mb-2">Código <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <i class="fas fa-barcode absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" id="code" required="" class="w-full bg-gray-100 dark:bg-gray-800 text-base py-3 pl-10 pr-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="title" class="block text-sm font-medium mb-2">Título <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <i class="fas fa-heading absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" id="title" required="" class="w-full bg-gray-100 dark:bg-gray-800 text-base py-3 pl-10 pr-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="actress" class="block text-sm font-medium mb-2">Actriz <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" id="actress" required="" class="w-full bg-gray-100 dark:bg-gray-800 text-base py-3 pl-10 pr-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="studio" class="block text-sm font-medium mb-2">Distribuidora <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <i class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" id="studio" required="" class="w-full bg-gray-100 dark:bg-gray-800 text-base py-3 pl-10 pr-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="genre" class="block text-sm font-medium mb-2">Género</label>
+                            <div class="relative">
+                                <i class="fas fa-tag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" id="genre" class="w-full bg-gray-100 dark:bg-gray-800 text-base py-3 pl-10 pr-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Puntuación</label>
+                            <div class="heart-rating flex">
+                                <input type="radio" id="rating5" name="rating" value="5">
+                                <label for="rating5"><i class="fas fa-heart"></i></label>
+                                
+                                <input type="radio" id="rating4" name="rating" value="4">
+                                <label for="rating4"><i class="fas fa-heart"></i></label>
+                                
+                                <input type="radio" id="rating3" name="rating" value="3">
+                                <label for="rating3"><i class="fas fa-heart"></i></label>
+                                
+                                <input type="radio" id="rating2" name="rating" value="2">
+                                <label for="rating2"><i class="fas fa-heart"></i></label>
+                                
+                                <input type="radio" id="rating1" name="rating" value="1">
+                                <label for="rating1"><i class="fas fa-heart"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="synopsis" class="block text-sm font-medium mb-2">Sinopsis</label>
+                        <div class="relative">
+                            <i class="fas fa-align-left absolute left-3 top-3 text-gray-400"></i>
+                            <textarea id="synopsis" rows="4" class="w-full bg-gray-100 dark:bg-gray-800 text-base py-3 pl-10 pr-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="coverInput" class="block text-sm font-medium mb-2">Portada</label>
+                        <div class="flex items-start gap-4">
+                            <div class="aspect-[3/4] w-1/4 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img id="coverPreview" class="hidden w-full h-full object-cover" alt="Portada">
+                                <i id="noCoverIcon" class="fas fa-image text-3xl text-gray-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="relative">
+                                    <input type="file" id="coverInput" accept="image/*" class="hidden">
+                                    <button type="button" id="selectImageBtn" class="btn-secondary py-2 px-4 rounded-lg mb-2 w-full">
+                                        <i class="fas fa-upload mr-2"></i> Seleccionar imagen
+                                    </button>
+                                    <button type="button" id="clearImageBtn" class="py-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 w-full">
+                                        <i class="fas fa-trash-alt mr-2"></i> Eliminar imagen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end gap-3 pt-4">
+                        <button type="button" id="cancelBtn" class="py-3 px-6 rounded-lg text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 font-medium">
+                            Cancelar
+                        </button>
+                        <button type="submit" id="saveBtn" class="btn-primary py-3 px-6 rounded-lg font-medium">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Ver Película -->
+    <div id="movieViewModal" class="modal fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div id="viewModalOverlay" class="modal-overlay absolute inset-0 bg-black opacity-50"></div>
+        <div class="modal-content w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 id="viewModalTitle" class="text-2xl font-bold">Detalles de la película</h2>
+                    <button id="closeViewModalBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center p-2">
+                        <img id="viewCover" class="movie-detail-cover" alt="Portada">
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Código</p>
+                            <p id="viewCode" class="text-xl font-semibold"></p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Título</p>
+                            <p id="viewTitle" class="text-xl"></p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Actriz</p>
+                            <p id="viewActress" class="text-lg"></p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Distribuidora</p>
+                            <p id="viewStudio" class="text-lg"></p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Género</p>
+                            <p id="viewGenre" class="text-lg"></p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Puntuación</p>
+                            <div id="viewRating" class="flex text-xl heart-color"></div>
+                        </div>
+                        
+                        <div class="mb-4 flex-grow">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Sinopsis</p>
+                            <p id="viewSynopsis" class="text-lg"></p>
+                        </div>
+                        
+                        <div class="flex justify-end gap-3 mt-4">
+                            <button id="deleteMovieBtn" class="py-2 px-4 rounded-lg text-white bg-red-500 hover:bg-red-600 font-medium">
+                                <i class="fas fa-trash-alt mr-2"></i> Eliminar
+                            </button>
+                            <button id="editMovieBtn" class="btn-secondary py-2 px-4 rounded-lg font-medium">
+                                <i class="fas fa-edit mr-2"></i> Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-gray-800 text-white py-3 px-6 rounded-lg shadow-lg hidden"></div>
+    
+    <!-- Confirm Dialog -->
+    <div id="confirmDialog" class="modal fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div id="confirmModalOverlay" class="modal-overlay absolute inset-0 bg-black opacity-50"></div>
+        <div class="modal-content w-full max-w-md">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-4" id="confirmTitle">¿Confirmar acción?</h3>
+                <p id="confirmMessage" class="mb-6">¿Estás seguro que deseas continuar con esta acción?</p>
+                
+                <div class="flex justify-end gap-3">
+                    <button id="cancelConfirmBtn" class="py-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 font-medium">
+                        Cancelar
+                    </button>
+                    <button id="confirmBtn" class="py-2 px-4 rounded-lg text-white bg-red-500 hover:bg-red-600 font-medium">
+                        Confirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Detección de preferencia de tema oscuro
+            function detectDarkMode() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                    document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                }
+                
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                    if (event.matches) {
+                        document.documentElement.classList.add('dark');
+                        document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-moon text-xl"></i>';
+                    }
+                });
+            }
+            
+            detectDarkMode();
+            
+            // Toggle Dark Mode
+            document.getElementById('darkModeToggle').addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                
+                if (document.documentElement.classList.contains('dark')) {
+                    this.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                } else {
+                    this.innerHTML = '<i class="fas fa-moon text-xl"></i>';
+                }
+            });
+            
+            // Modelo de datos
+            let movies = [];
+            let currentMovieId = null;
+            let currentFilter = {
+                search: '',
+                actress: '',
+                studio: '',
+                rating: ''
+            };
+            let currentSort = 'newest';
+            let currentView = 'grid';
+            
+            // Datos de ejemplo
+            const sampleMovies = [
+                {
+                    id: 'movie1',
+                    code: 'SSNI-916',
+                    title: 'Super Body High-Cut Underwear Temptation',
+                    actress: 'Aika Yumeno',
+                    studio: 'S1 NO.1 STYLE',
+                    genre: 'High-Cut, Pantyhose, Solowork, Underwear',
+                    synopsis: 'Una historia sobre tentación y pasión donde Aika Yumeno seduce con su cuerpo perfecto luciendo lencería de corte alto que deja poco a la imaginación.',
+                    cover: 'https://picsum.photos/400/600?random=1',
+                    rating: 5,
+                    addedAt: Date.now() - 1000000
+                },
+                {
+                    id: 'movie2',
+                    code: 'MIDE-784',
+                    title: 'Pleasure Addiction: Endless Ecstasy',
+                    actress: 'Julia Boin',
+                    studio: 'MOODYZ',
+                    genre: 'Big Tits, Drama, Solowork',
+                    synopsis: 'Julia se sumerge en un papel dramático donde interpreta a una mujer adicta al placer que no puede dejar de buscar experiencias cada vez más intensas.',
+                    cover: 'https://picsum.photos/400/600?random=2',
+                    rating: 4,
+                    addedAt: Date.now() - 2000000
+                },
+                {
+                    id: 'movie3',
+                    code: 'IPX-515',
+                    title: 'Passionate Reunion with Ex-Girlfriend',
+                    actress: 'Tsubasa Amami',
+                    studio: 'IDEA POCKET',
+                    genre: 'Drama, Romance, Solowork',
+                    synopsis: 'Tsubasa interpreta a una ex-novia que se reencuentra con su antiguo amor después de años, desatando pasiones que creían olvidadas en un emotivo drama romántico.',
+                    cover: 'https://picsum.photos/400/600?random=3',
+                    rating: 3,
+                    addedAt: Date.now() - 3000000
+                }
+            ];
+            
+            // Cargar películas del almacenamiento local o usar ejemplos
+            function loadMovies() {
+                try {
+                    const savedMovies = localStorage.getItem('javMovies');
+                    if (savedMovies) {
+                        movies = JSON.parse(savedMovies);
+                    } else {
+                        // Usar datos de ejemplo en la primera carga
+                        movies = sampleMovies;
+                        saveMovies();
+                    }
+                } catch (e) {
+                    console.error('Error loading movies:', e);
+                    movies = sampleMovies;
+                    saveMovies();
+                }
+                updateUI();
+            }
+            
+            // Guardar películas en el almacenamiento local
+            function saveMovies() {
+                try {
+                    localStorage.setItem('javMovies', JSON.stringify(movies));
+                } catch (e) {
+                    console.error('Error saving movies:', e);
+                    showToast('Error al guardar datos', 'error');
+                }
+            }
+            
+            // Añadir o actualizar película
+            function saveMovie(movie) {
+                const index = movies.findIndex(m => m.id === movie.id);
+                
+                if (index >= 0) {
+                    // Actualizar película existente
+                    movies[index] = movie;
+                    showToast('Película actualizada correctamente');
+                } else {
+                    // Añadir nueva película
+                    movies.unshift(movie);
+                    showToast('Película añadida correctamente');
+                }
+                
+                saveMovies();
+                updateUI();
+            }
+            
+            // Eliminar película
+            function deleteMovie(id) {
+                movies = movies.filter(movie => movie.id !== id);
+                saveMovies();
+                updateUI();
+                showToast('Película eliminada correctamente');
+            }
+            
+            // Filtrar y ordenar películas
+            function getFilteredMovies() {
+                let filtered = [...movies];
+                
+                // Aplicar búsqueda
+                if (currentFilter.search) {
+                    const searchTerm = currentFilter.search.toLowerCase();
+                    filtered = filtered.filter(movie => 
+                        movie.code.toLowerCase().includes(searchTerm) ||
+                        movie.title.toLowerCase().includes(searchTerm) ||
+                        movie.actress.toLowerCase().includes(searchTerm) ||
+                        (movie.synopsis && movie.synopsis.toLowerCase().includes(searchTerm))
+                    );
+                }
+                
+                // Aplicar filtro de actriz
+                if (currentFilter.actress) {
+                    filtered = filtered.filter(movie => movie.actress === currentFilter.actress);
+                }
+                
+                // Aplicar filtro de estudio
+                if (currentFilter.studio) {
+                    filtered = filtered.filter(movie => movie.studio === currentFilter.studio);
+                }
+                
+                // Aplicar filtro de rating
+                if (currentFilter.rating) {
+                    const ratingValue = parseInt(currentFilter.rating);
+                    filtered = filtered.filter(movie => movie.rating >= ratingValue);
+                }
+                
+                // Ordenar
+                switch (currentSort) {
+                    case 'newest':
+                        filtered.sort((a, b) => b.addedAt - a.addedAt);
+                        break;
+                    case 'oldest':
+                        filtered.sort((a, b) => a.addedAt - b.addedAt);
+                        break;
+                    case 'rating':
+                        filtered.sort((a, b) => b.rating - a.rating);
+                        break;
+                    case 'code':
+                        filtered.sort((a, b) => a.code.localeCompare(b.code));
+                        break;
+                }
+                
+                return filtered;
+            }
+            
+            // Actualizar UI
+            function updateUI() {
+                updateFiltersOptions();
+                renderMovies();
+            }
+            
+            // Actualizar opciones de filtros
+            function updateFiltersOptions() {
+                // Obtener listas únicas
+                const actresses = [...new Set(movies.map(movie => movie.actress))].sort();
+                const studios = [...new Set(movies.map(movie => movie.studio))].sort();
+                
+                // Actualizar select de actrices
+                const actressSelect = document.getElementById('actressFilter');
+                actressSelect.innerHTML = '<option value="">Todas las actrices</option>';
+                actresses.forEach(actress => {
+                    const option = document.createElement('option');
+                    option.value = actress;
+                    option.textContent = actress;
+                    if (currentFilter.actress === actress) option.selected = true;
+                    actressSelect.appendChild(option);
+                });
+                
+                // Actualizar select de estudios
+                const studioSelect = document.getElementById('studioFilter');
+                studioSelect.innerHTML = '<option value="">Todas las distribuidoras</option>';
+                studios.forEach(studio => {
+                    const option = document.createElement('option');
+                    option.value = studio;
+                    option.textContent = studio;
+                    if (currentFilter.studio === studio) option.selected = true;
+                    studioSelect.appendChild(option);
+                });
+            }
+            
+            // Renderizar películas
+            function renderMovies() {
+                const filteredMovies = getFilteredMovies();
+                const gridContainer = document.getElementById('moviesGrid');
+                const listContainer = document.getElementById('moviesList');
+                const emptyState = document.getElementById('emptyState');
+                const movieCount = document.getElementById('movieCount');
+                
+                // Actualizar contador
+                movieCount.textContent = filteredMovies.length;
+                
+                // Mostrar estado vacío si no hay películas
+                if (movies.length === 0) {
+                    gridContainer.innerHTML = '';
+                    listContainer.innerHTML = '';
+                    emptyState.classList.remove('hidden');
+                    return;
+                } else {
+                    emptyState.classList.add('hidden');
+                }
+                
+                // Mostrar mensaje si no hay resultados con los filtros actuales
+                if (filteredMovies.length === 0) {
+                    const noResults = `
+                        <div class="col-span-full py-12 flex flex-col items-center justify-center text-center">
+                            <i class="fas fa-search text-5xl mb-4 text-gray-300 dark:text-gray-600"></i>
+                            <h3 class="text-xl font-semibold mb-2">No se encontraron películas</h3>
+                            <p class="text-gray-500 dark:text-gray-400">Intenta con otros filtros de búsqueda</p>
+                        </div>
+                    `;
+                    gridContainer.innerHTML = noResults;
+                    listContainer.innerHTML = '';
+                    return;
+                }
+                
+                // Renderizar vista de cuadrícula
+                gridContainer.innerHTML = filteredMovies.map(movie => `
+                    <div class="movie-card" data-id="${movie.id}">
+                        <div class="relative">
+                            <img src="${movie.cover || 'https://picsum.photos/400/600?grayscale'}" alt="${movie.title}" class="movie-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                                <div class="code-badge mb-1">${movie.code}</div>
+                                <p class="text-white text-xs">${movie.actress}</p>
+                                <div class="flex heart-color text-xs mt-1">
+                                    ${getRatingStars(movie.rating)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Renderizar vista de lista
+                listContainer.innerHTML = filteredMovies.map(movie => `
+                    <div class="movie-card flex bg-white dark:bg-gray-800 shadow-md" data-id="${movie.id}">
+                        <div class="w-24 h-36 flex-shrink-0 overflow-hidden">
+                            <img src="${movie.cover || 'https://picsum.photos/400/600?grayscale'}" alt="${movie.title}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 p-4">
+                            <div class="flex justify-between items-center">
+                                <div class="code-badge">${movie.code}</div>
+                                <div class="flex heart-color text-xs">
+                                    ${getRatingStars(movie.rating)}
+                                </div>
+                            </div>
+                            <p class="text-sm font-medium mt-2">${movie.title}</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">${movie.actress}</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">${movie.studio}</p>
+                            ${movie.synopsis ? `<p class="text-xs mt-2 line-clamp-2">${movie.synopsis}</p>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Añadir event listeners
+                document.querySelectorAll('.movie-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        const movieId = this.getAttribute('data-id');
+                        openViewModal(movieId);
+                    });
+                });
+            }
+            
+            // Generar estrellas de rating
+            function getRatingStars(rating) {
+                return Array(5).fill().map((_, i) => 
+                    i < rating ? 
+                        '<i class="fas fa-heart"></i>' : 
+                        '<i class="far fa-heart"></i>'
+                ).join('');
+            }
+            
+            // Alternar entre vistas
+            document.getElementById('gridViewBtn').addEventListener('click', function() {
+                document.getElementById('moviesGrid').classList.remove('hidden');
+                document.getElementById('moviesList').classList.add('hidden');
+                document.getElementById('gridViewBtn').classList.add('bg-gray-200', 'dark:bg-gray-600');
+                document.getElementById('listViewBtn').classList.remove('bg-gray-200', 'dark:bg-gray-600');
+                currentView = 'grid';
+            });
+            
+            document.getElementById('listViewBtn').addEventListener('click', function() {
+                document.getElementById('moviesGrid').classList.add('hidden');
+                document.getElementById('moviesList').classList.remove('hidden');
+                document.getElementById('listViewBtn').classList.add('bg-gray-200', 'dark:bg-gray-600');
+                document.getElementById('gridViewBtn').classList.remove('bg-gray-200', 'dark:bg-gray-600');
+                currentView = 'list';
+            });
+            
+            // Buscar
+            document.getElementById('searchInput').addEventListener('input', function() {
+                currentFilter.search = this.value;
+                renderMovies();
+            });
+            
+            // Filtros
+            document.getElementById('actressFilter').addEventListener('change', function() {
+                currentFilter.actress = this.value;
+                renderMovies();
+            });
+            
+            document.getElementById('studioFilter').addEventListener('change', function() {
+                currentFilter.studio = this.value;
+                renderMovies();
+            });
+            
+            document.getElementById('ratingFilter').addEventListener('change', function() {
+                currentFilter.rating = this.value;
+                renderMovies();
+            });
+            
+            // Ordenar
+            document.getElementById('sortBy').addEventListener('change', function() {
+                currentSort = this.value;
+                renderMovies();
+            });
+            
+            // Funciones del modal de formulario
+            function openFormModal(isEditing = false) {
+                const modal = document.getElementById('movieFormModal');
+                const modalTitle = document.getElementById('modalTitle');
+                
+                modalTitle.textContent = isEditing ? 'Editar película' : 'Añadir nueva película';
+                
+                modal.classList.remove('hidden');
+                modal.classList.add('modal-enter');
+                modal.querySelector('.modal-content').classList.add('modal-content-enter');
+                
+                // Enfocar el primer campo
+                setTimeout(() => {
+                    document.getElementById('code').focus();
+                }, 100);
+            }
+            
+            function closeFormModal() {
+                const modal = document.getElementById('movieFormModal');
+                modal.classList.add('hidden');
+                resetForm();
+            }
+            
+            function resetForm() {
+                document.getElementById('movieForm').reset();
+                document.getElementById('movieId').value = '';
+                document.getElementById('coverPreview').classList.add('hidden');
+                document.getElementById('noCoverIcon').classList.remove('hidden');
+                currentMovieId = null;
+                
+                // Desmarcar todos los corazones
+                document.querySelectorAll('.heart-rating input').forEach(input => {
+                    input.checked = false;
+                });
+            }
+            
+            // Guardar película
+            document.getElementById('movieForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    id: document.getElementById('movieId').value || 'movie_' + Date.now(),
+                    code: document.getElementById('code').value.trim(),
+                    title: document.getElementById('title').value.trim(),
+                    actress: document.getElementById('actress').value.trim(),
+                    studio: document.getElementById('studio').value.trim(),
+                    genre: document.getElementById('genre').value.trim(),
+                    synopsis: document.getElementById('synopsis').value.trim(),
+                    cover: document.getElementById('coverPreview').src,
+                    rating: parseInt(document.querySelector('.heart-rating input:checked')?.value || '0'),
+                    addedAt: currentMovieId ? (movies.find(m => m.id === currentMovieId)?.addedAt || Date.now()) : Date.now()
+                };
+                
+                // Validar que tenga portada
+                if (!formData.cover || formData.cover.includes('hidden')) {
+                    formData.cover = null;
+                }
+                
+                saveMovie(formData);
+                closeFormModal();
+            });
+            
+            // Cargar película para editar
+            function loadMovieToForm(movieId) {
+                const movie = movies.find(m => m.id === movieId);
+                if (!movie) return;
+                
+                currentMovieId = movieId;
+                
+                document.getElementById('movieId').value = movie.id;
+                document.getElementById('code').value = movie.code;
+                document.getElementById('title').value = movie.title;
+                document.getElementById('actress').value = movie.actress;
+                document.getElementById('studio').value = movie.studio;
+                document.getElementById('genre').value = movie.genre || '';
+                document.getElementById('synopsis').value = movie.synopsis || '';
+                
+                // Establecer rating
+                if (movie.rating > 0) {
+                    document.getElementById(`rating${movie.rating}`).checked = true;
+                }
+                
+                // Cargar portada
+                if (movie.cover) {
+                    document.getElementById('coverPreview').src = movie.cover;
+                    document.getElementById('coverPreview').classList.remove('hidden');
+                    document.getElementById('noCoverIcon').classList.add('hidden');
+                } else {
+                    document.getElementById('coverPreview').classList.add('hidden');
+                    document.getElementById('noCoverIcon').classList.remove('hidden');
+                }
+                
+                openFormModal(true);
+            }
+            
+            // Funciones del modal de visualización
+            function openViewModal(movieId) {
+                const movie = movies.find(m => m.id === movieId);
+                if (!movie) return;
+                
+                currentMovieId = movieId;
+                
+                // Llenar datos en el modal
+                document.getElementById('viewCode').textContent = movie.code;
+                document.getElementById('viewTitle').textContent = movie.title;
+                document.getElementById('viewActress').textContent = movie.actress;
+                document.getElementById('viewStudio').textContent = movie.studio;
+                document.getElementById('viewGenre').textContent = movie.genre || 'No especificado';
+                document.getElementById('viewSynopsis').textContent = movie.synopsis || 'No hay sinopsis disponible';
+                
+                // Mostrar portada
+                if (movie.cover) {
+                    document.getElementById('viewCover').src = movie.cover;
+                } else {
+                    document.getElementById('viewCover').src = 'https://picsum.photos/400/600?grayscale';
+                }
+                
+                // Mostrar rating
+                document.getElementById('viewRating').innerHTML = getRatingStars(movie.rating);
+                
+                // Mostrar modal
+                const modal = document.getElementById('movieViewModal');
+                modal.classList.remove('hidden');
+                modal.classList.add('modal-enter');
+                modal.querySelector('.modal-content').classList.add('modal-content-enter');
+            }
+            
+            function closeViewModal() {
+                const modal = document.getElementById('movieViewModal');
+                modal.classList.add('hidden');
+                currentMovieId = null;
+            }
+            
+            // Botones en el modal de visualización
+            document.getElementById('editMovieBtn').addEventListener('click', function() {
+                const movieIdToEdit = currentMovieId;
+                closeViewModal();
+                setTimeout(() => {
+                    loadMovieToForm(movieIdToEdit);
+                }, 100);
+            });
+            
+            document.getElementById('deleteMovieBtn').addEventListener('click', function() {
+                showConfirmDialog(
+                    '¿Eliminar película?',
+                    `¿Estás seguro que deseas eliminar la película ${document.getElementById('viewCode').textContent}?`,
+                    function() {
+                        deleteMovie(currentMovieId);
+                        closeViewModal();
+                    }
+                );
+            });
+            
+            // Gestión de imágenes
+            document.getElementById('selectImageBtn').addEventListener('click', function() {
+                document.getElementById('coverInput').click();
+            });
+            
+            document.getElementById('coverInput').addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('coverPreview').src = e.target.result;
+                        document.getElementById('coverPreview').classList.remove('hidden');
+                        document.getElementById('noCoverIcon').classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            document.getElementById('clearImageBtn').addEventListener('click', function() {
+                document.getElementById('coverInput').value = '';
+                document.getElementById('coverPreview').classList.add('hidden');
+                document.getElementById('noCoverIcon').classList.remove('hidden');
+            });
+            
+            // Notificaciones Toast
+            function showToast(message, type = 'success') {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.classList.remove('hidden');
+                toast.classList.add('toast');
+                
+                if (type === 'error') {
+                    toast.classList.add('bg-red-500');
+                    toast.classList.remove('bg-gray-800');
+                } else {
+                    toast.classList.add('bg-gray-800');
+                    toast.classList.remove('bg-red-500');
+                }
+                
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                    toast.classList.remove('toast');
+                }, 3000);
+            }
+            
+            // Diálogo de confirmación
+            function showConfirmDialog(title, message, onConfirm) {
+                const dialog = document.getElementById('confirmDialog');
+                document.getElementById('confirmTitle').textContent = title;
+                document.getElementById('confirmMessage').textContent = message;
+                
+                dialog.classList.remove('hidden');
+                dialog.classList.add('modal-enter');
+                dialog.querySelector('.modal-content').classList.add('modal-content-enter');
+                
+                // Guardar callback
+                dialog.dataset.onConfirm = onConfirm.toString();
+                
+                document.getElementById('confirmBtn').onclick = function() {
+                    closeConfirmDialog();
+                    onConfirm();
+                };
+            }
+            
+            function closeConfirmDialog() {
+                const dialog = document.getElementById('confirmDialog');
+                dialog.classList.add('hidden');
+            }
+            
+            // Event Listeners para cerrar modales al hacer clic fuera
+            document.getElementById('formModalOverlay').addEventListener('click', closeFormModal);
+            document.getElementById('viewModalOverlay').addEventListener('click', closeViewModal);
+            document.getElementById('confirmModalOverlay').addEventListener('click', closeConfirmDialog);
+            
+            // Event Listeners
+            document.getElementById('addMovieBtn').addEventListener('click', function() {
+                openFormModal();
+            });
+            
+            document.getElementById('emptyStateAddBtn').addEventListener('click', function() {
+                openFormModal();
+            });
+            
+            document.getElementById('closeModalBtn').addEventListener('click', closeFormModal);
+            document.getElementById('cancelBtn').addEventListener('click', closeFormModal);
+            
+            document.getElementById('closeViewModalBtn').addEventListener('click', closeViewModal);
+            
+            document.getElementById('cancelConfirmBtn').addEventListener('click', closeConfirmDialog);
+            
+            // Inicializar
+            loadMovies();
+        });
+    </script>
+
+
+</body></html>
