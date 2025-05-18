@@ -1,44 +1,16 @@
 [
-                            {
-                                title: 'LIVE YOUR DREAM',
-                                category: 'Álbum',
-                                description: 'El último single de Liella! con 2 nuevas canciones traducidas al español.',
-                                url: 'post1.html',
-                                tags: ['Liella', 'single', 'música', 'new', 'canciones', 'traducidas', 'abril', '2023']
-                            },
-                            {
-                                title: 'Liella! 2nd Photobook',
-                                category: 'Photobook',
-                                description: 'Photobook oficial con 85 páginas de imágenes y entrevistas traducidas.',
-                                url: 'post2.html',
-                                tags: ['Liella', 'photobook', 'entrevistas', 'fotos', 'imágenes', 'marzo', '2023']
-                            },
-                            {
-                                title: 'Liella! 1st Live Tour',
-                                category: 'Concierto',
-                                description: 'Concierto completo subtitulado con todas las canciones y MC.',
-                                url: 'post1.html',
-                                tags: ['Liella', 'live', 'concierto', 'subtitulado', 'presentación', 'febrero', '2023']
-                            },
-                            {
-                                title: 'Nijigasaki - MELODY',
-                                category: 'Álbum',
-                                description: 'Álbum completo de Nijigasaki con 12 canciones traducidas al español.',
-                                url: 'post1.html',
-                                tags: ['Nijigasaki', 'álbum', 'música', 'canciones', 'traducidas', 'enero', '2023']
-                            },
-                            {
-                                title: '明け方の夢 (Akegata no Yume)',
-                                category: 'Photobook',
-                                description: 'Photobook oficial de Sasaki Kotoko con 161 páginas traducidas al español.',
-                                url: 'post2.html',
-                                tags: ['Kotoko', 'Sasaki', 'photobook', 'Akegata', 'Yume', 'sueños', 'amanecer']
-                            },
-                            {
-                                title: 'Dream Believers (105th Ver.)',
-                                category: 'Álbum',
-                                description: 'Edición especial del álbum Dream Believers de Liella! con 6 canciones.',
-                                url: 'post1.html',
-                                tags: ['Liella', 'álbum', 'Dream', 'Believers', '105th', 'especial', 'canciones']
-                            }
-                        ];
+  {
+    "title": "Dream Believers (105th Ver.)",
+    "category": "Álbum",
+    "description": "dición especial del álbum Dream Believers de Liella! con 6 canciones.",
+    "url": "post1.html",
+    "tags": ["Liella", "single", "Dream", "Believers", "105th", "especial", "canciones", "2023"]
+  },
+  {
+    "title": "明け方の夢 (Akegata no Yume)",
+    "category": "Photobook",
+    "description": "Photobook oficial de Sasaki Kotoko con 161 páginas traducidas al español.",
+    "url": "post2.html",
+    "tags": ["Kotoko", "Sasaki", "photobook", "Akegata", "Yume", "sueños", a"manecer"]
+  },
+]
