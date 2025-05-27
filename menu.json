@@ -1,0 +1,70 @@
+{
+    "profile": {
+        "image": "https://i.imgur.com/gKP40xz.jpeg",
+        "description": "Colección de Photobooks Oficiales"
+    },
+    "menuItems": [
+        {
+            "id": "home",
+            "label": "Inicio",
+            "icon": "fa-home",
+            "url": "#",
+            "isSearch": false
+        },
+        {
+            "id": "collections",
+            "label": "Colecciones",
+            "icon": "fa-images",
+            "url": "#",
+            "isSearch": false
+        },
+        {
+            "id": "releases",
+            "label": "Lanzamientos",
+            "icon": "fa-calendar-alt",
+            "url": "#",
+            "isSearch": false
+        },
+        {
+            "id": "photobooks",
+            "label": "Photobooks",
+            "icon": "fa-book",
+            "url": "#",
+            "isSearch": false
+        },
+        {
+            "id": "search",
+            "label": "Buscar",
+            "icon": "fa-search",
+            "url": "#",
+            "isSearch": true
+        },
+        {
+            "id": "support",
+            "label": "Apóyanos",
+            "icon": "fa-heart",
+            "url": "#",
+            "isSearch": false
+        }
+    ],
+    "socialLinks": [
+        {
+            "id": "youtube",
+            "icon": "fa-youtube",
+            "url": "#",
+            "hoverColor": "primary"
+        },
+        {
+            "id": "twitter",
+            "icon": "fa-twitter",
+            "url": "#",
+            "hoverColor": "secondary"
+        },
+        {
+            "id": "instagram",
+            "icon": "fa-instagram",
+            "url": "#",
+            "hoverColor": "accent1"
+        }
+    ]
+}
