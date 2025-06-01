@@ -1,0 +1,1131 @@
+<!DOCTYPE html><html lang="es"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Believers - CD | Nijigasaki Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        niji: {
+                            yellow: '#FFD100',
+                            pink: '#FF5D8F',
+                            blue: '#5D9CEC',
+                            purple: '#9D65C9',
+                            orange: '#FF9E4D',
+                            light: '#FFFBEB',
+                            dark: '#1A1919'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'float-slow': 'float 12s ease-in-out infinite',
+                        'float-fast': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '25%': { transform: 'translateY(-10px) rotate(2deg)' },
+                            '50%': { transform: 'translateY(0) rotate(0deg)' },
+                            '75%': { transform: 'translateY(10px) rotate(-2deg)' },
+                        }
+                    }
+                },
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+        
+        .clip-pentagon {
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+        
+        .clip-blob-1 {
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        }
+        
+        .clip-blob-2 {
+            clip-path: polygon(40% 0%, 60% 0%, 100% 40%, 100% 60%, 60% 100%, 40% 100%, 0% 60%, 0% 40%);
+        }
+        
+        .clip-star {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        
+        .clip-zigzag {
+            clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
+        }
+        
+        .clip-triangle {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(255, 209, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 209, 0, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .bg-grid-dark {
+            background-image: 
+                linear-gradient(rgba(255, 209, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 209, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .card-glow {
+            box-shadow: 0 0 15px rgba(255, 209, 0, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .card-glow:hover {
+            box-shadow: 0 0 30px rgba(255, 209, 0, 0.5);
+        }
+        
+        /* Dark mode adjustments */
+        .dark .bg-grid {
+            background-image: 
+                linear-gradient(rgba(255, 209, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 209, 0, 0.05) 1px, transparent 1px);
+        }
+        
+        .img-filter {
+            filter: brightness(0.95) saturate(1.2);
+            transition: filter 0.3s ease;
+        }
+        
+        .img-filter:hover {
+            filter: brightness(1) saturate(1.35);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #FFD100;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e5bb00;
+        }
+
+        .download-btn {
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 209, 0, 0.3);
+        }
+
+        .tracklist-item {
+            transition: all 0.4s ease;
+        }
+
+        .tracklist-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(255, 209, 0, 0.1) 0%, rgba(255, 93, 143, 0.1) 100%);
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .track-item {
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .track-item:hover {
+            border-left-color: #FFD100;
+            background: rgba(255, 209, 0, 0.05);
+        }
+
+        /* Search Modal Styles - Nijigasaki themed */
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 15vh;
+            z-index: 1050;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .search-container {
+            width: 90%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(255, 209, 0, 0.3);
+            border: 2px solid rgba(255, 209, 0, 0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+        
+        .dark .search-container {
+            background: rgba(26, 25, 25, 0.95);
+            border: 2px solid rgba(255, 209, 0, 0.3);
+        }
+        
+        .search-modal.active .search-container {
+            transform: translateY(0);
+        }
+        
+        .search-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 209, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 209, 0, 0.05) 0%, rgba(255, 93, 143, 0.05) 100%);
+        }
+        
+        .dark .search-header {
+            border-bottom: 1px solid rgba(255, 209, 0, 0.3);
+        }
+        
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            padding: 10px;
+            color: #1A1919;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+        
+        .dark .search-input {
+            color: #FFFBEB;
+        }
+        
+        .search-input:focus {
+            outline: none;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(26, 25, 25, 0.6);
+        }
+        
+        .dark .search-input::placeholder {
+            color: rgba(255, 251, 235, 0.6);
+        }
+        
+        .search-close {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            background: rgba(255, 209, 0, 0.1);
+            color: #FFD100;
+            transition: all 0.3s;
+        }
+        
+        .search-close:hover {
+            background: rgba(255, 209, 0, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .search-results {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 10px 20px;
+        }
+        
+        .result-item {
+            padding: 15px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid transparent;
+        }
+        
+        .result-item:hover {
+            background: linear-gradient(135deg, rgba(255, 209, 0, 0.1) 0%, rgba(255, 93, 143, 0.1) 100%);
+            border: 1px solid rgba(255, 209, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .result-thumbnail {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(255, 209, 0, 0.2) 0%, rgba(255, 93, 143, 0.2) 100%);
+            border: 2px solid rgba(255, 209, 0, 0.3);
+        }
+        
+        .result-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .result-content {
+            flex: 1;
+        }
+        
+        .result-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD100, #FF9E4D);
+            color: #1A1919;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .result-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1A1919;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .dark .result-title {
+            color: #FFFBEB;
+        }
+        
+        .result-excerpt {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+            color: #1A1919;
+        }
+        
+        .dark .result-excerpt {
+            color: #FFFBEB;
+        }
+        
+        .result-url {
+            font-size: 12px;
+            color: #5D9CEC;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(255, 209, 0, 0.4) 0%, rgba(255, 93, 143, 0.4) 100%);
+            padding: 0 3px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .results-info, .no-results {
+            padding: 20px;
+            text-align: center;
+            opacity: 0.7;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }
+        
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 209, 0, 0.2);
+            border-top-color: #FFD100;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Search button in header */
+        .search-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            background: rgba(255, 209, 0, 0.1) !important;
+            color: #FFD100;
+        }
+        
+        .search-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 209, 0, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s;
+        }
+        
+        .search-button:active::after {
+            transform: translate(-50%, -50%) scale(3);
+            opacity: 0;
+        }
+
+        /* Placeholder image for thumbnails */
+        .placeholder-thumbnail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 209, 0, 0.3) 0%, rgba(255, 93, 143, 0.3) 100%);
+            color: #FFD100;
+            font-size: 18px;
+        }
+
+        .dark .placeholder-thumbnail {
+            background: linear-gradient(135deg, rgba(255, 209, 0, 0.4) 0%, rgba(255, 93, 143, 0.4) 100%);
+        }
+    </style>
+</head>
+<body class="font-sans bg-white dark:bg-niji-dark text-niji-dark dark:text-white overflow-x-hidden">
+    <!-- Fixed shapes -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-niji-yellow/10 rounded-full blur-3xl animate-float-slow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-niji-pink/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-niji-blue/10 rounded-full blur-3xl animate-float-fast"></div>
+        
+        <!-- Grid background -->
+        <div class="absolute inset-0 bg-grid dark:bg-grid-dark"></div>
+        
+        <!-- Decorative shapes -->
+        <div class="absolute top-10 right-10 w-16 h-16 clip-pentagon bg-niji-yellow/20 animate-spin-slow"></div>
+        <div class="absolute bottom-20 left-10 w-12 h-12 clip-star bg-niji-pink/20 animate-float"></div>
+        <div class="absolute top-1/2 right-1/4 w-20 h-20 clip-blob-1 bg-niji-blue/20 animate-float-slow"></div>
+        <div class="absolute bottom-1/3 left-1/3 w-14 h-14 clip-triangle bg-niji-purple/20 animate-float-fast"></div>
+    </div>
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-niji-dark/80 border-b border-niji-yellow/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-niji-yellow to-niji-orange">
+                        <span class="relative inline-block">
+                            Niji
+                            <span class="absolute -bottom-1 left-0 w-full h-1 bg-niji-yellow rounded-full"></span>
+                        </span>
+                        <span>Collection</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-niji-dark dark:text-white font-medium hover:text-niji-yellow dark:hover:text-niji-yellow transition-colors">Inicio</a>
+                    <a href="#cds" class="text-niji-dark dark:text-white font-medium hover:text-niji-yellow dark:hover:text-niji-yellow transition-colors">CDs</a>
+                    <a href="#photobooks" class="text-niji-dark dark:text-white font-medium hover:text-niji-yellow dark:hover:text-niji-yellow transition-colors">Photobooks</a>
+                    <a href="#support" class="text-niji-dark dark:text-white font-medium hover:text-niji-yellow dark:hover:text-niji-yellow transition-colors">Apoyo</a>
+                    <button id="searchButton" class="search-button p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-niji-yellow/10 transition-colors">
+                        <i class="fas fa-search h-5 w-5 text-niji-dark dark:text-white"></i>
+                    </button>
+                    <button id="themeToggle" class="p-1 rounded-full bg-niji-yellow/10 hover:bg-niji-yellow/20 transition-colors">
+                        <i class="fas fa-sun h-6 w-6 text-niji-yellow dark:hidden"></i>
+                        <i class="fas fa-moon h-6 w-6 text-niji-yellow hidden dark:block"></i>
+                    </button>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="p-2 rounded-md bg-niji-yellow/10 hover:bg-niji-yellow/20 transition-colors">
+                        <i class="fas fa-bars h-6 w-6 text-niji-yellow"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-niji-dark border-b border-niji-yellow/20">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-niji-dark dark:text-white hover:bg-niji-yellow/10 hover:text-niji-yellow">Inicio</a>
+                <a href="#cds" class="block px-3 py-2 rounded-md text-base font-medium text-niji-dark dark:text-white hover:bg-niji-yellow/10 hover:text-niji-yellow">CDs</a>
+                <a href="#photobooks" class="block px-3 py-2 rounded-md text-base font-medium text-niji-dark dark:text-white hover:bg-niji-yellow/10 hover:text-niji-yellow">Photobooks</a>
+                <a href="#support" class="block px-3 py-2 rounded-md text-base font-medium text-niji-dark dark:text-white hover:bg-niji-yellow/10 hover:text-niji-yellow">Apoyo</a>
+                <button id="mobileSearchButton" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-niji-dark dark:text-white hover:bg-niji-yellow/10 hover:text-niji-yellow flex items-center">
+                    <i class="fas fa-search h-5 w-5 mr-2 text-niji-yellow"></i>
+                    Buscar en la colección
+                </button>
+                <button id="mobileThemeToggle" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-niji-dark dark:text-white hover:bg-niji-yellow/10 hover:text-niji-yellow flex items-center">
+                    <i class="fas fa-sun h-5 w-5 mr-2 text-niji-yellow dark:hidden"></i>
+                    <i class="fas fa-moon h-5 w-5 mr-2 text-niji-yellow hidden dark:block"></i>
+                    Cambiar tema
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="flex items-center flex-1">
+                    <i class="fas fa-search text-niji-yellow mr-3 text-lg"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Buscar en la colección Nijigasaki...">
+                </div>
+                <div id="searchClose" class="search-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div id="searchResults" class="search-results">
+                <div class="results-info">Comienza a escribir para buscar en la colección...</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Marquee text -->
+    <div class="overflow-hidden h-12 flex items-center bg-niji-yellow text-black font-bold">
+        <div class="whitespace-nowrap animate-marquee inline-block">
+            <span class="inline-block mx-4">✦ LOVE LIVE! NIJIGASAKI HIGH SCHOOL IDOL CLUB ✦</span>
+            <span class="inline-block mx-4">✦ ラブライブ！虹ヶ咲学園スクールアイドル同好会 ✦</span>
+            <span class="inline-block mx-4">✦ COLECCIÓN EXCLUSIVA ✦</span>
+            <span class="inline-block mx-4">✦ LOVE LIVE! NIJIGASAKI HIGH SCHOOL IDOL CLUB ✦</span>
+            <span class="inline-block mx-4">✦ ラブライブ！虹ヶ咲学園スクールアイドル同好会 ✦</span>
+            <span class="inline-block mx-4">✦ COLECCIÓN EXCLUSIVA ✦</span>
+        </div>
+        <div class="whitespace-nowrap animate-marquee inline-block">
+            <span class="inline-block mx-4">✦ LOVE LIVE! NIJIGASAKI HIGH SCHOOL IDOL CLUB ✦</span>
+            <span class="inline-block mx-4">✦ ラブライブ！虹ヶ咲学園スクールアイドル同好会 ✦</span>
+            <span class="inline-block mx-4">✦ COLECCIÓN EXCLUSIVA ✦</span>
+            <span class="inline-block mx-4">✦ LOVE LIVE! NIJIGASAKI HIGH SCHOOL IDOL CLUB ✦</span>
+            <span class="inline-block mx-4">✦ ラブライブ！虹ヶ咲学園スクールアイドル同好会 ✦</span>
+            <span class="inline-block mx-4">✦ COLECCIÓN EXCLUSIVA ✦</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white/50 dark:bg-niji-dark/50 backdrop-blur-sm py-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="#" class="text-niji-yellow hover:text-niji-orange transition-colors">
+                    <i class="fas fa-home mr-1"></i>Inicio
+                </a>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+                <a href="#" class="text-niji-yellow hover:text-niji-orange transition-colors">CDs</a>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+                <span class="text-gray-600 dark:text-gray-400">Dream Believers</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Hero Section with Cover -->
+            <div class="hero-section p-8 mb-8">
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <!-- Cover Image -->
+                    <div class="lg:w-1/3">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-niji-pink/30 to-niji-yellow/30 rounded-2xl transform rotate-1"></div>
+                            <div class="relative z-10 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl transform -rotate-1">
+                                <img src="https://i.imgur.com/9geF2oZ.jpeg" alt="Dream Believers Cover" class="rounded-xl w-full h-auto img-filter">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Title and Info -->
+                    <div class="lg:w-2/3 text-center lg:text-left">
+                        <h1 class="text-4xl lg:text-5xl font-display font-bold text-niji-pink mb-4">
+                            Dream Believers
+                        </h1>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl">
+                            Álbum musical completo con 6 tracks de alta calidad en formato FLAC y MP3. Una colección sonora que captura la esencia de los sueños y la esperanza con melodías inolvidables.
+                        </p>
+                        
+                        <!-- Quick Info -->
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-niji-yellow">6</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Tracks</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-niji-pink">2023</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Año</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-niji-blue">FLAC</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Calidad</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-niji-purple">Studio</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Producción</div>
+                            </div>
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-2">
+                            <span class="px-3 py-1 bg-niji-yellow/10 text-niji-yellow rounded-full text-sm font-semibold">
+                                <i class="fas fa-music mr-1"></i>Album
+                            </span>
+                            <span class="px-3 py-1 bg-niji-pink/10 text-niji-pink rounded-full text-sm font-semibold">
+                                <i class="fas fa-headphones mr-1"></i>High Quality
+                            </span>
+                            <span class="px-3 py-1 bg-niji-blue/10 text-niji-blue rounded-full text-sm font-semibold">
+                                <i class="fas fa-compact-disc mr-1"></i>Original</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Tracklist Section -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl mb-6">
+                        <h3 class="text-xl font-bold text-niji-dark dark:text-white mb-4 flex items-center">
+                            <i class="fas fa-list mr-2 text-niji-yellow"></i>
+                            Lista de Canciones
+                        </h3>
+                        
+                        <!-- Tracklist -->
+                        <div class="space-y-3">
+                            <div class="track-item flex items-center justify-between p-4 rounded-xl hover:bg-niji-yellow/5 transition-all">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-niji-yellow/20 flex items-center justify-center font-bold text-niji-yellow">
+                                        01
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-niji-dark dark:text-white">Dream Believers (105th Ver.)</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Track principal</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-music mr-1"></i>4:32
+                                </div>
+                            </div>
+
+                            <div class="track-item flex items-center justify-between p-4 rounded-xl hover:bg-niji-yellow/5 transition-all">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-niji-pink/20 flex items-center justify-center font-bold text-niji-pink">
+                                        02
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-niji-dark dark:text-white">Celebration!</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Upbeat anthem</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-music mr-1"></i>3:58
+                                </div>
+                            </div>
+
+                            <div class="track-item flex items-center justify-between p-4 rounded-xl hover:bg-niji-yellow/5 transition-all">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-niji-blue/20 flex items-center justify-center font-bold text-niji-blue">
+                                        03
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-niji-dark dark:text-white">Ampere (アンペア)</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Electrifying melody</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-music mr-1"></i>4:15
+                                </div>
+                            </div>
+
+                            <div class="track-item flex items-center justify-between p-4 rounded-xl hover:bg-niji-yellow/5 transition-all">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-niji-purple/20 flex items-center justify-center font-bold text-niji-purple">
+                                        04
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-niji-dark dark:text-white">WAWO!</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Energetic track</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-music mr-1"></i>3:42
+                                </div>
+                            </div>
+
+                            <div class="track-item flex items-center justify-between p-4 rounded-xl hover:bg-niji-yellow/5 transition-all">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-niji-orange/20 flex items-center justify-center font-bold text-niji-orange">
+                                        05
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-niji-dark dark:text-white">Edelied</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Noble ballad</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-music mr-1"></i>5:01
+                                </div>
+                            </div>
+
+                            <div class="track-item flex items-center justify-between p-4 rounded-xl hover:bg-niji-yellow/5 transition-all">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-niji-yellow/20 flex items-center justify-center font-bold text-niji-yellow">
+                                        06
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-niji-dark dark:text-white">Hello, new dream!</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Inspiring finale</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-music mr-1"></i>4:28
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl">
+                        <h4 class="text-xl font-bold text-niji-dark dark:text-white mb-3 flex items-center">
+                            <i class="fas fa-compact-disc mr-2 text-niji-pink"></i>
+                            Descripción
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            "Dream Believers" es una colección musical que reúne las mejores interpretaciones del grupo. Con 6 tracks cuidadosamente masterizados, este álbum ofrece una experiencia auditiva completa en formatos de alta calidad FLAC y MP3 320kbps.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Download Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl sticky top-24">
+                        <h3 class="text-xl font-bold text-niji-yellow mb-4 flex items-center">
+                            <i class="fas fa-download mr-2"></i>
+                            Descargar
+                        </h3>
+                        <div class="space-y-3">
+                            <button class="download-btn w-full flex items-center justify-between px-4 py-3 bg-niji-yellow text-black font-bold rounded-xl hover:bg-opacity-90">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-audio mr-2"></i>
+                                    <span>FLAC Complete</span>
+                                </div>
+                                <span class="text-xs bg-black/20 px-2 py-1 rounded">185MB</span>
+                            </button>
+                            <button class="download-btn w-full flex items-center justify-between px-4 py-3 bg-niji-pink text-white font-bold rounded-xl hover:bg-opacity-90">
+                                <div class="flex items-center">
+                                    <i class="fas fa-music mr-2"></i>
+                                    <span>MP3 320kbps</span>
+                                </div>
+                                <span class="text-xs bg-white/20 px-2 py-1 rounded">85MB</span>
+                            </button>
+                            <button class="download-btn w-full flex items-center justify-between px-4 py-3 bg-niji-blue text-white font-bold rounded-xl hover:bg-opacity-90">
+                                <div class="flex items-center">
+                                    <i class="fas fa-mobile-alt mr-2"></i>
+                                    <span>MP3 128kbps</span>
+                                </div>
+                                <span class="text-xs bg-white/20 px-2 py-1 rounded">35MB</span>
+                            </button>
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 dark:text-gray-400">Formato:</span>
+                                    <span class="font-semibold">FLAC / MP3</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 dark:text-gray-400">Duración total:</span>
+                                    <span class="font-semibold">25:56</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 dark:text-gray-400">Idioma:</span>
+                                    <span class="font-semibold">Japonés</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Collection -->
+            <div class="mt-8 text-center">
+                <a href="#" class="inline-flex items-center px-6 py-3 rounded-full bg-white dark:bg-niji-dark border-2 border-niji-yellow text-niji-yellow font-bold hover:bg-niji-yellow/10 transform hover:-translate-y-1 transition-all">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    <span>Volver a la colección</span>
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
+        <!-- Grid-like pattern in background -->
+        <div class="absolute inset-0 bg-grid-dark opacity-50"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-niji-yellow mr-3 flex items-center justify-center">
+                            <span class="text-black font-bold text-xl">N</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-niji-yellow">Nijigasaki</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Una colección dedicada a Love Live! Nijigasaki High School Idol Club. Compartiendo mi pasión por el anime y las idols.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-niji-pink mb-4">Enlaces</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-niji-yellow transition-colors">Inicio</a></li>
+                        <li><a href="#cds" class="text-gray-400 hover:text-niji-yellow transition-colors">CDs</a></li>
+                        <li><a href="#photobooks" class="text-gray-400 hover:text-niji-yellow transition-colors">Photobooks</a></li>
+                        <li><a href="#support" class="text-gray-400 hover:text-niji-yellow transition-colors">Apóyame</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-niji-blue mb-4">Sígueme</h3>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800 hover:bg-niji-yellow hover:text-gray-900 transition-colors text-sm">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800 hover:bg-niji-yellow hover:text-gray-900 transition-colors text-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800 hover:bg-niji-yellow hover:text-gray-900 transition-colors text-sm">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-800 text-center text-gray-500 text-xs">
+                <p>© 2023 Nijigasaki Collection. Todos los derechos reservados.</p>
+                <p class="mt-1">Love Live! y todos los personajes relacionados son propiedad de sus respectivos dueños.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            
+            function toggleDarkMode() {
+                document.documentElement.classList.toggle('dark');
+            }
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleDarkMode);
+            }
+            
+            if (mobileThemeToggle) {
+                mobileThemeToggle.addEventListener('click', toggleDarkMode);
+            }
+            
+            // Check for dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+            
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                if (event.matches) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Download button handlers
+            document.querySelectorAll('.download-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Here you could implement actual download functionality
+                    const downloadType = this.textContent.trim().split('\n')[0];
+                    alert(`Iniciando descarga: ${downloadType}`);
+                });
+            });
+
+            // Track item click handlers (if you want to add functionality later)
+            document.querySelectorAll('.track-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    // Could add track preview or other functionality here
+                    console.log('Track clicked:', this.querySelector('h4').textContent);
+                });
+            });
+
+            // Search Modal Functionality
+            const searchButton = document.getElementById('searchButton');
+            const mobileSearchButton = document.getElementById('mobileSearchButton');
+            const searchModal = document.getElementById('searchModal');
+            const searchClose = document.getElementById('searchClose');
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            // Variable to store search content
+            let searchableContent = [];
+            
+            // Function to load data from a local JSON file
+            async function loadSearchData() {
+                try {
+                    // Show loading state
+                    searchResults.innerHTML = `
+                        <div class="loading">
+                            <div class="loader"></div>
+                        </div>
+                    `;
+                    
+                    // Path to local JSON file in the "busqueda" folder
+                    const jsonUrl = './busqueda/search9.json';
+                    
+                    // Fetch data from the local JSON file
+                    const response = await fetch(jsonUrl);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    // Parse the JSON response
+                    const data = await response.json();
+                    searchableContent = data;
+                    
+                    // Restore default message after loading
+                    searchResults.innerHTML = '<div class="results-info">Comienza a escribir para buscar en la colección...</div>';
+                    
+                    console.log(`Datos de búsqueda cargados: ${searchableContent.length} elementos`);
+                } catch (error) {
+                    console.error('Error cargando datos de búsqueda:', error);
+                    // In case of error, use backup data
+                    searchableContent = [];
+                    // Show message to user
+                    searchResults.innerHTML = '<div class="no-results">Error cargando datos de búsqueda. Asegúrate de que el archivo ./busqueda/search9.json esté disponible.</div>';
+                }
+            }
+            
+            // Load data on startup
+            loadSearchData();
+            
+            // Open search modal
+            function openSearchModal() {
+                searchModal.classList.add('active');
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 300);
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+            
+            // Close search modal
+            function closeSearchModal() {
+                searchModal.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            }
+            
+            searchButton.addEventListener('click', openSearchModal);
+            mobileSearchButton.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden'); // Close mobile menu first
+                setTimeout(openSearchModal, 300); // Then open search
+            });
+            
+            searchClose.addEventListener('click', closeSearchModal);
+            
+            // Also close on outside click
+            searchModal.addEventListener('click', function(e) {
+                if (e.target === searchModal) {
+                    closeSearchModal();
+                }
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                
+                if (query.length < 2) {
+                    searchResults.innerHTML = '<div class="results-info">Comienza a escribir para buscar en la colección...</div>';
+                    return;
+                }
+                
+                // Check if data is loaded
+                if (searchableContent.length === 0) {
+                    searchResults.innerHTML = '<div class="no-results">Cargando datos de búsqueda...</div>';
+                    return;
+                }
+                
+                // Filter content based on search query
+                const filteredResults = searchableContent.filter(item => {
+                    const titleMatch = item.title.toLowerCase().includes(query);
+                    const descriptionMatch = item.description.toLowerCase().includes(query);
+                    const categoryMatch = item.category.toLowerCase().includes(query);
+                    const tagsMatch = item.tags.some(tag => tag.toLowerCase().includes(query));
+                    
+                    return titleMatch || descriptionMatch || categoryMatch || tagsMatch;
+                });
+                
+                if (filteredResults.length === 0) {
+                    searchResults.innerHTML = '<div class="no-results">No se encontraron resultados para tu búsqueda.</div>';
+                    return;
+                }
+                
+                // Render results with Nijigasaki-themed styling and thumbnails
+                const resultsHTML = filteredResults.map(result => {
+                    // Highlight matching text
+                    let title = result.title;
+                    let description = result.description;
+                    
+                    if (title.toLowerCase().includes(query)) {
+                        const regex = new RegExp(`(${query})`, 'gi');
+                        title = title.replace(regex, '<span class="highlight">$1</span>');
+                    }
+                    
+                    if (description.toLowerCase().includes(query)) {
+                        const regex = new RegExp(`(${query})`, 'gi');
+                        description = description.replace(regex, '<span class="highlight">$1</span>');
+                    }
+                    
+                    // Thumbnail HTML with fallback
+                    let thumbnailHTML = '';
+                    if (result.imageUrl) {
+                        thumbnailHTML = `<img src="${result.imageUrl}" alt="${result.title}" class="w-full h-full object-cover">`;
+                    } else {
+                        // Placeholder if no image is available
+                        thumbnailHTML = `
+                            <div class="placeholder-thumbnail">
+                                <i class="fas fa-${result.category.toLowerCase() === 'album' ? 'compact-disc' : 
+                                              result.category.toLowerCase() === 'photobook' ? 'book' : 'image'} text-xl"></i>
+                            </div>
+                        `;
+                    }
+                    
+                    return `
+                        <div class="result-item" data-url="${result.url}">
+                            <div class="result-thumbnail">
+                                ${thumbnailHTML}
+                            </div>
+                            <div class="result-content">
+                                <div class="result-category">${result.category}</div>
+                                <h3 class="result-title">${title}</h3>
+                                <p class="result-excerpt">${description}</p>
+                                <div class="result-url">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                    </svg>
+                                    ${result.url}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                searchResults.innerHTML = `
+                    <div class="results-info">Se encontraron ${filteredResults.length} resultados para "${query}"</div>
+                    ${resultsHTML}
+                `;
+                
+                // Add click events to results
+                document.querySelectorAll('.result-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const url = this.getAttribute('data-url');
+                        window.location.href = url;
+                    });
+                });
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+                    closeSearchModal();
+                }
+            });
+        });
+    </script>
+
+
+
+</body></html>
