@@ -1,0 +1,112 @@
+[
+  {
+    "character": "kozue",
+    "name": "Kozue",
+    "description": "rtrrterer",
+    "normalImage": "https://i.imgur.com/SqovBqC.png",
+    "idolImage": "https://i.imgur.com/T68o9EN.png",
+    "isNew": true
+  },
+  {
+    "character": "ginko",
+    "name": "Ginko",
+    "description": "Versión mech futurista",
+    "normalImage": "https://i.imgur.com/wu5NJzf.jpeg",
+    "idolImage": "https://i.imgur.com/8ikk8nh.jpeg",
+    "isNew": true
+  },
+  {
+    "character": "ginko",
+    "name": "Ginko",
+    "description": "Elegante festival tradicional",
+    "normalImage": "https://pfst.cf2.poecdn.net/base/image/7a969c9312a1e8f0bd72e81dc62fddcbfef998c1a120864e60c7d7348e0b7c63?w=1728&h=1120",
+    "idolImage": "https://pfst.cf2.poecdn.net/base/image/c181bb20b02f468b5d495f9cb42b76bf83f6c706771c0238bd1d3665fcced19e?w=1728&h=1120"
+  },
+  {
+    "character": "kaho",
+    "name": "Kaho",
+    "description": "Momento especial",
+    "normalImage": "https://picsum.photos/400/500?random=1",
+    "idolImage": "https://picsum.photos/400/500?random=101",
+    "isNew": true
+  },
+  {
+    "character": "kaho",
+    "name": "Kaho",
+    "description": "Actuación en vivo",
+    "normalImage": "https://picsum.photos/400/500?random=2",
+    "idolImage": "https://picsum.photos/400/500?random=102"
+  },
+  {
+    "character": "kaho",
+    "name": "Kaho",
+    "description": "Sesión fotográfica",
+    "normalImage": "https://picsum.photos/400/500?random=3",
+    "idolImage": "https://picsum.photos/400/500?random=103",
+    "isNew": true
+  },
+  {
+    "character": "kozue",
+    "name": "Kozue",
+    "description": "Práctica de baile",
+    "normalImage": "https://picsum.photos/400/500?random=4",
+    "idolImage": "https://picsum.photos/400/500?random=104"
+  },
+  {
+    "character": "sayaka",
+    "name": "Sayaka",
+    "description": "Ensayo especial",
+    "normalImage": "https://picsum.photos/400/500?random=7",
+    "idolImage": "https://picsum.photos/400/500?random=107"
+  },
+  {
+    "character": "tsuzuri",
+    "name": "Tsuzuri",
+    "description": "Momento dulce",
+    "normalImage": "https://picsum.photos/400/500?random=10",
+    "idolImage": "https://picsum.photos/400/500?random=110",
+    "isNew": true
+  },
+  {
+    "character": "rurino",
+    "name": "Rurino",
+    "description": "Energía pura",
+    "normalImage": "https://picsum.photos/400/500?random=13",
+    "idolImage": "https://picsum.photos/400/500?random=113"
+  },
+  {
+    "character": "megumi",
+    "name": "Megumi",
+    "description": "Elegancia",
+    "normalImage": "https://picsum.photos/400/500?random=16",
+    "idolImage": "https://picsum.photos/400/500?random=116"
+  },
+  {
+    "character": "kosuzu",
+    "name": "Kosuzu",
+    "description": "Dulzura",
+    "normalImage": "https://picsum.photos/400/500?random=22",
+    "idolImage": "https://picsum.photos/400/500?random=122"
+  },
+  {
+    "character": "hime",
+    "name": "Hime",
+    "description": "Gracia",
+    "normalImage": "https://picsum.photos/400/500?random=25",
+    "idolImage": "https://picsum.photos/400/500?random=125"
+  },
+  {
+    "character": "ceras",
+    "name": "Ceras",
+    "description": "Brillante",
+    "normalImage": "https://picsum.photos/400/500?random=28",
+    "idolImage": "https://picsum.photos/400/500?random=128"
+  },
+  {
+    "character": "izumi",
+    "name": "Izumi",
+    "description": "Personalidad única",
+    "normalImage": "https://picsum.photos/400/500?random=31",
+    "idolImage": "https://picsum.photos/400/500?random=131"
+  }
+]
