@@ -1,0 +1,1683 @@
+<!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta name="x-poe-datastore-behavior" content="local_only">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Seiyu Sorter Kawaii ✨</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&amp;family=Pacifico&amp;display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        kawaii: ['Pacifico', 'cursive'],
+                    },
+                    colors: {
+                        pink: {
+                            50: '#FFF5F7',
+                            100: '#FFE4E9',
+                            200: '#FFC9D6',
+                            300: '#FFA8BB',
+                            400: '#FF87A0',
+                            500: '#FF6B8A',
+                            600: '#FF5277',
+                            700: '#E63E64',
+                            800: '#CC2D52',
+                            900: '#B31F40',
+                        },
+                        lavender: {
+                            50: '#F8F7FF',
+                            100: '#EFE9FF',
+                            200: '#DFD3FF',
+                            300: '#CFBDFF',
+                            400: '#BFA7FF',
+                            500: '#AF91FF',
+                            600: '#9F7BFF',
+                            700: '#8B5FFF',
+                            800: '#7847E6',
+                            900: '#6533CC',
+                        },
+                        sky: {
+                            50: '#F0F9FF',
+                            100: '#E0F2FE',
+                            200: '#B9E5FE',
+                            300: '#7DD3FC',
+                            400: '#38BDF8',
+                            500: '#0EA5E9',
+                            600: '#0284C7',
+                            700: '#0369A1',
+                            800: '#075985',
+                            900: '#0C4A6E',
+                        },
+                        mint: {
+                            50: '#F0FDFA',
+                            100: '#CCFBF1',
+                            200: '#99F6E4',
+                            300: '#5EEAD4',
+                            400: '#2DD4BF',
+                            500: '#14B8A6',
+                            600: '#0D9488',
+                            700: '#0F766E',
+                            800: '#115E59',
+                            900: '#134E4A',
+                        },
+                        peach: {
+                            50: '#FFF7ED',
+                            100: '#FFEDD5',
+                            200: '#FED7AA',
+                            300: '#FDBA74',
+                            400: '#FB923C',
+                            500: '#F97316',
+                            600: '#EA580C',
+                            700: '#C2410C',
+                            800: '#9A3412',
+                            900: '#7C2D12',
+                        },
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'sparkle': 'sparkle 1.5s ease-in-out infinite',
+                        'heart-beat': 'heartBeat 1.5s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-5deg)' },
+                            '50%': { transform: 'rotate(5deg)' },
+                        },
+                        sparkle: {
+                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                            '50%': { opacity: '0.5', transform: 'scale(1.2)' },
+                        },
+                        heartBeat: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '25%': { transform: 'scale(1.1)' },
+                            '50%': { transform: 'scale(1)' },
+                            '75%': { transform: 'scale(1.05)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FFF5F7 0%, #F0F9FF 25%, #F8F7FF 50%, #F0FDFA 75%, #FFF7ED 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Patrón kawaii de fondo */
+        .kawaii-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .kawaii-pattern::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle, #FF6B8A 1px, transparent 1px),
+                radial-gradient(circle, #AF91FF 1px, transparent 1px),
+                radial-gradient(circle, #7DD3FC 1px, transparent 1px);
+            background-size: 50px 50px, 80px 80px, 100px 100px;
+            background-position: 0 0, 40px 40px, 20px 20px;
+        }
+
+        /* Nubes kawaii flotantes */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud-1 {
+            width: 100px;
+            height: 40px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .cloud-1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud-1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        .cloud-2 {
+            width: 120px;
+            height: 45px;
+            top: 20%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .cloud-2::before {
+            width: 55px;
+            height: 55px;
+            top: -28px;
+            left: 15px;
+        }
+
+        .cloud-2::after {
+            width: 65px;
+            height: 45px;
+            top: -18px;
+            right: 15px;
+        }
+
+        .cloud-3 {
+            width: 90px;
+            height: 35px;
+            bottom: 15%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        .cloud-3::before {
+            width: 45px;
+            height: 45px;
+            top: -22px;
+            left: 8px;
+        }
+
+        .cloud-3::after {
+            width: 55px;
+            height: 35px;
+            top: -12px;
+            right: 8px;
+        }
+
+        /* Estrellas kawaii */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            font-size: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        /* Tarjetas glassmorphism kawaii */
+        .glass-kawaii {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow:
+                0 8px 32px rgba(255, 107, 138, 0.15),
+                0 4px 16px rgba(175, 145, 255, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .dark .glass-kawaii {
+            background: rgba(30, 20, 40, 0.85);
+            border: 3px solid rgba(175, 145, 255, 0.3);
+        }
+
+        /* Botones kawaii con corazones */
+        .btn-kawaii {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .btn-kawaii:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .btn-kawaii:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .btn-kawaii::before {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 40px;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .btn-kawaii:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Bordes decorativos kawaii */
+        .kawaii-border {
+            border: 4px solid transparent;
+            border-image: linear-gradient(135deg, #FF6B8A, #AF91FF, #7DD3FC, #5EEAD4) 1;
+            position: relative;
+        }
+
+        .kawaii-border::before {
+            content: '♥';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 24px;
+            color: #FF6B8A;
+            animation: heart-beat 1.5s ease-in-out infinite;
+        }
+
+        .kawaii-border::after {
+            content: '★';
+            position: absolute;
+            bottom: -15px;
+            right: 20px;
+            font-size: 24px;
+            color: #AF91FF;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        /* Efecto de brillo en imágenes */
+        .img-kawaii {
+            border: 5px solid white;
+            box-shadow:
+                0 0 0 2px #FF6B8A,
+                0 0 0 4px #AF91FF,
+                0 10px 30px rgba(255, 107, 138, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .img-kawaii:hover {
+            box-shadow:
+                0 0 0 2px #AF91FF,
+                0 0 0 4px #7DD3FC,
+                0 15px 40px rgba(175, 145, 255, 0.4);
+            transform: rotate(-2deg) scale(1.05);
+        }
+
+        /* Badge VS kawaii */
+        .vs-badge-kawaii {
+            background: linear-gradient(135deg, #FF6B8A, #AF91FF);
+            border: 5px solid white;
+            box-shadow:
+                0 0 20px rgba(255, 107, 138, 0.5),
+                0 0 40px rgba(175, 145, 255, 0.3);
+            animation: float 2s ease-in-out infinite, heart-beat 1.5s ease-in-out infinite;
+        }
+
+        /* Confeti de corazones */
+        .heart-rain {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .heart {
+            position: absolute;
+            opacity: 0;
+            font-size: 30px;
+            animation: heart-fall 4s linear;
+        }
+
+        @keyframes heart-fall {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        /* Progress bar kawaii */
+        .progress-kawaii {
+            background: linear-gradient(90deg,
+                #FF6B8A 0%,
+                #AF91FF 25%,
+                #7DD3FC 50%,
+                #5EEAD4 75%,
+                #FDBA74 100%);
+            background-size: 200% 100%;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Input kawaii */
+        .input-kawaii {
+            border: 3px solid #FFE4E9;
+            transition: all 0.3s ease;
+        }
+
+        .input-kawaii:focus {
+            border-color: #FF6B8A;
+            box-shadow: 0 0 0 4px rgba(255, 107, 138, 0.2);
+            outline: none;
+        }
+
+        /* Decoración de título */
+        .title-decoration::before {
+            content: '✿';
+            margin-right: 15px;
+            color: #FF6B8A;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        .title-decoration::after {
+            content: '✿';
+            margin-left: 15px;
+            color: #AF91FF;
+            animation: wiggle 2s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        /* Hover efecto en tarjetas */
+        .card-kawaii {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .card-kawaii:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+        .left-1\/2 {
+            left: 46% !important;
+        }
+    </style>
+<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
+<body class="font-sans">
+    <!-- Patrón kawaii de fondo -->
+    <div class="kawaii-pattern"></div>
+
+    <!-- Nubes flotantes -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+
+    <!-- Estrellas decorativas -->
+    <div class="stars">
+        <div class="star" style="top: 10%; left: 15%;">⭐</div>
+        <div class="star" style="top: 25%; right: 20%; animation-delay: 0.5s;">✨</div>
+        <div class="star" style="top: 60%; left: 25%; animation-delay: 1s;">💫</div>
+        <div class="star" style="bottom: 20%; right: 15%; animation-delay: 1.5s;">⭐</div>
+        <div class="star" style="top: 50%; left: 5%; animation-delay: 0.3s;">✨</div>
+        <div class="star" style="top: 15%; right: 10%; animation-delay: 0.8s;">💫</div>
+    </div>
+
+    <!-- Lluvia de corazones (celebración) -->
+    <div id="heart-rain" class="heart-rain hidden"></div>
+
+    <div class="container mx-auto px-4 py-8 flex flex-col items-center min-h-screen">
+        <!-- Título principal -->
+        <h1 class="font-kawaii text-6xl sm:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-lavender-500 to-sky-400 mb-4 text-center animate-fade-in title-decoration drop-shadow-lg">
+            Seiyu Sorter
+        </h1>
+        <p class="text-pink-400 font-semibold text-lg mb-8 animate-slide-up">✨ ¡Descubre tus seiyus favoritas! ✨</p>
+
+        <!-- Login Modal -->
+        <div id="login-modal" class="fixed inset-0 bg-pink-500/30 backdrop-blur-md z-50 flex items-center justify-center hidden animate-fade-in">
+            <div class="w-full max-w-md p-8 glass-kawaii rounded-[2rem] transform transition-all animate-slide-up">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4 animate-bounce-slow">🌸</div>
+                    <h2 class="text-3xl font-kawaii font-bold text-pink-600">Admin Login</h2>
+                    <p class="text-lavender-500 mt-2">Accede para gestionar las seiyus</p>
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <label for="username" class="block text-sm font-bold text-pink-600 mb-2">👤 Usuario</label>
+                        <input type="text" id="username" class="w-full px-5 py-3 rounded-2xl input-kawaii bg-white text-gray-800 text-base font-semibold">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-bold text-pink-600 mb-2">🔐 Contraseña</label>
+                        <input type="password" id="password" class="w-full px-5 py-3 rounded-2xl input-kawaii bg-white text-gray-800 text-base font-semibold">
+                    </div>
+                    <div id="login-error" class="text-pink-600 text-sm font-bold hidden bg-pink-100 p-3 rounded-xl">❌ Usuario o contraseña incorrectos</div>
+                </div>
+                <div class="mt-8 flex gap-4">
+                    <button id="login-cancel-btn" class="flex-1 py-3 px-4 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold transition-all transform hover:scale-105">
+                        Cancelar
+                    </button>
+                    <button id="login-submit-btn" class="flex-1 py-3 px-4 bg-gradient-to-r from-pink-400 to-pink-500 text-white font-bold rounded-2xl shadow-lg btn-kawaii">
+                        ✨ Acceder
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Seiyu Modal -->
+        <div id="edit-seiyu-modal" class="fixed inset-0 bg-lavender-500/30 backdrop-blur-md z-50 flex items-center justify-center hidden animate-fade-in">
+            <div class="w-full max-w-md p-8 glass-kawaii rounded-[2rem] transform transition-all animate-slide-up">
+                <div class="text-center mb-6">
+                    <div class="text-5xl mb-3 animate-wiggle">✏️</div>
+                    <h2 class="text-3xl font-kawaii font-bold text-lavender-600">Editar Seiyu</h2>
+                </div>
+                <div class="space-y-5">
+                    <input type="hidden" id="edit-seiyu-id">
+                    <div>
+                        <label for="edit-seiyu-name" class="block text-sm font-bold text-lavender-600 mb-2">💕 Nombre</label>
+                        <input type="text" id="edit-seiyu-name" class="w-full px-5 py-3 rounded-2xl input-kawaii bg-white text-gray-800 text-base font-semibold">
+                    </div>
+                    <div>
+                        <label for="edit-seiyu-image" class="block text-sm font-bold text-lavender-600 mb-2">🖼️ URL de la imagen</label>
+                        <input type="text" id="edit-seiyu-image" class="w-full px-5 py-3 rounded-2xl input-kawaii bg-white text-gray-800 text-base font-semibold">
+                    </div>
+                    <div class="mt-2 p-4 bg-pink-50 rounded-2xl text-sm">
+                        <p class="font-bold text-pink-600 mb-2">🌟 Dominios permitidos:</p>
+                        <ul class="list-none pl-3 space-y-1 text-xs text-pink-500">
+                            <li>✓ https://pfst.cf2.poecdn.net/...</li>
+                            <li>✓ https://i.imgur.com/...</li>
+                            <li>✓ https://picsum.photos/...</li>
+                            <li>✓ https://images.unsplash.com/...</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 flex gap-4">
+                    <button id="edit-cancel-btn" class="flex-1 py-3 px-4 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold transition-all transform hover:scale-105">
+                        Cancelar
+                    </button>
+                    <button id="edit-save-btn" class="flex-1 py-3 px-4 bg-gradient-to-r from-lavender-400 to-lavender-500 text-white font-bold rounded-2xl shadow-lg btn-kawaii">
+                        💾 Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export HTML Modal -->
+        <div id="export-modal" class="fixed inset-0 bg-sky-500/30 backdrop-blur-md z-50 flex items-center justify-center hidden animate-fade-in">
+            <div class="w-full max-w-4xl p-8 glass-kawaii rounded-[2rem] transform transition-all max-h-[90vh] overflow-auto animate-slide-up">
+                <div class="text-center mb-6">
+                    <div class="text-5xl mb-3 animate-bounce-slow">📦</div>
+                    <h2 class="text-3xl font-kawaii font-bold text-sky-600">Exportar Código HTML</h2>
+                    <p class="text-lavender-500 mt-2">Copia este código para guardar las modificaciones</p>
+                </div>
+                <div>
+                    <div class="relative">
+                        <pre id="export-code" class="bg-pink-50 p-5 rounded-2xl text-xs md:text-sm overflow-auto max-h-[50vh] font-mono text-gray-800 whitespace-pre-wrap border-4 border-pink-200"></pre>
+                        <button id="copy-code-btn" class="absolute top-3 right-3 bg-gradient-to-r from-pink-400 to-lavender-400 text-white p-3 rounded-xl btn-kawaii shadow-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="copy-success" class="mt-4 text-center text-green-600 font-bold text-lg hidden bg-green-100 p-3 rounded-xl">
+                        ✅ ¡Código copiado al portapapeles!
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <button id="export-cancel-btn" class="py-3 px-8 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold transition-all transform hover:scale-105">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Screen -->
+        <div id="admin-screen" class="hidden w-full max-w-5xl mt-8 animate-fade-in">
+            <div class="glass-kawaii rounded-[2rem] p-8 mb-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 pb-6 border-b-4 border-pink-200">
+                    <h2 class="text-4xl font-kawaii font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-lavender-500">🎀 Panel de Administración</h2>
+                    <button id="admin-logout-btn" class="py-2 px-5 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-2xl transition-all transform hover:scale-105 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                        Cerrar sesión
+                    </button>
+                </div>
+
+                <!-- Form to add new seiyu -->
+                <div class="mb-10 bg-gradient-to-br from-pink-50 to-lavender-50 p-6 rounded-3xl border-4 border-pink-200 shadow-lg">
+                    <h3 class="text-2xl font-kawaii font-bold text-pink-600 mb-6">✨ Añadir nueva seiyu</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="new-seiyu-name" class="block text-sm font-bold text-pink-600 mb-2">💕 Nombre</label>
+                            <input type="text" id="new-seiyu-name" class="w-full px-5 py-3 rounded-2xl input-kawaii bg-white text-gray-800 text-base font-semibold" placeholder="Nombre de la seiyu">
+                        </div>
+                        <div>
+                            <label for="new-seiyu-image" class="block text-sm font-bold text-pink-600 mb-2">🖼️ URL de la imagen</label>
+                            <input type="text" id="new-seiyu-image" class="w-full px-5 py-3 rounded-2xl input-kawaii bg-white text-gray-800 text-base font-semibold" placeholder="https://ejemplo.com/imagen.jpg">
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-white rounded-2xl text-sm border-3 border-pink-200">
+                        <p class="font-bold text-pink-600 mb-2">🌟 Dominios permitidos:</p>
+                        <ul class="list-none pl-3 space-y-1 text-xs text-pink-500">
+                            <li>✓ https://pfst.cf2.poecdn.net/...</li>
+                            <li>✓ https://i.imgur.com/...</li>
+                            <li>✓ https://picsum.photos/...</li>
+                            <li>✓ https://images.unsplash.com/...</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 flex justify-end">
+                        <button id="add-seiyu-btn" class="py-3 px-6 bg-gradient-to-r from-pink-400 to-pink-500 text-white font-bold rounded-2xl shadow-lg btn-kawaii flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Seiyu list -->
+                <h3 class="text-2xl font-kawaii font-bold text-lavender-600 mb-6">🌸 Seiyus actuales</h3>
+                <div id="admin-seiyu-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                    <!-- Dynamically generated -->
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6">
+                    <button id="export-html-btn" class="py-4 px-7 bg-gradient-to-r from-mint-400 to-mint-500 text-white font-bold rounded-2xl shadow-lg btn-kawaii flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                        </svg>
+                        Exportar Código HTML
+                    </button>
+
+                    <button id="admin-back-btn" class="py-4 px-7 bg-gradient-to-r from-lavender-400 to-sky-400 text-white font-bold rounded-2xl shadow-lg btn-kawaii flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Volver al inicio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="flex flex-col items-center justify-center w-full max-w-lg py-10 animate-float">
+            <!-- Decorative idol images with kawaii frames -->
+            <div class="flex flex-wrap justify-center gap-8 mb-10 w-full">
+                <!-- First idol -->
+                <div class="relative transform rotate-[-5deg] transition-transform hover:rotate-0 hover:scale-110 duration-300 animate-slide-up">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-pink-300 to-lavender-300 rounded-[2rem] blur-xl opacity-60"></div>
+                    <div class="relative p-2 bg-gradient-to-br from-pink-100 to-lavender-100 rounded-[2rem] overflow-hidden border-5 border-white shadow-2xl">
+                        <img src="https://i.imgur.com/FH1AUSS.jpeg" alt="Nozomi Nirei" class="w-40 h-40 object-cover rounded-3xl">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-pink-600/90 to-transparent backdrop-blur-sm p-3 text-white text-center text-sm font-bold">Nozomi Nirei</div>
+                        <div class="absolute top-3 right-3 w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce-slow">1</div>
+                        <div class="absolute top-3 left-3 text-2xl animate-sparkle">✨</div>
+                    </div>
+                </div>
+
+                <!-- Second idol -->
+                <div class="relative transform rotate-[5deg] transition-transform hover:rotate-0 hover:scale-110 duration-300 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-lavender-300 to-sky-300 rounded-[2rem] blur-xl opacity-60"></div>
+                    <div class="relative p-2 bg-gradient-to-br from-lavender-100 to-sky-100 rounded-[2rem] overflow-hidden border-5 border-white shadow-2xl">
+                        <img src="https://i.imgur.com/5h5DsHD.jpeg" alt="Hanamiya Nina" class="w-40 h-40 object-cover rounded-3xl">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-lavender-600/90 to-transparent backdrop-blur-sm p-3 text-white text-center text-sm font-bold">Hanamiya Nina</div>
+                        <div class="absolute top-3 right-3 w-8 h-8 bg-gradient-to-br from-lavender-400 to-lavender-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce-slow">3</div>
+                        <div class="absolute top-3 left-3 text-2xl animate-sparkle" style="animation-delay: 0.5s;">💫</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full glass-kawaii rounded-[2rem] p-8 shadow-2xl mb-8 animate-fade-in">
+                <div class="text-center mb-10">
+                    <div class="text-6xl mb-4 animate-heart-beat">💖</div>
+                    <h2 class="text-4xl font-kawaii font-bold text-pink-600 mb-3">¡Bienvenido!</h2>
+                    <p class="text-lavender-500 font-semibold">Elige tus seiyus favoritas comparando en parejas</p>
+                </div>
+
+                <div class="space-y-5">
+                    <button id="start-btn" class="w-full py-5 px-6 bg-gradient-to-r from-pink-400 via-lavender-400 to-sky-400 text-white font-bold text-lg rounded-2xl shadow-xl btn-kawaii flex items-center justify-center">
+                        <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        ✨ Iniciar Sorter ✨
+                    </button>
+
+                    <input type="file" id="file-input" accept=".json" class="hidden">
+                    <button id="load-btn" class="w-full py-4 px-6 bg-gradient-to-r from-lavender-300 to-lavender-400 text-white font-bold rounded-2xl shadow-lg btn-kawaii flex items-center justify-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                        </svg>
+                        📂 Cargar Progreso
+                    </button>
+
+                    <button id="admin-login-btn" class="w-full py-4 px-6 bg-white text-pink-600 font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 border-4 border-pink-200 flex items-center justify-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        👑 Administrar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Decorative elements -->
+            <div class="flex gap-6 mt-10">
+                <div class="w-4 h-4 rounded-full bg-pink-400 animate-bounce-slow"></div>
+                <div class="w-4 h-4 rounded-full bg-lavender-400 animate-bounce-slow" style="animation-delay: 0.3s"></div>
+                <div class="w-4 h-4 rounded-full bg-sky-400 animate-bounce-slow" style="animation-delay: 0.6s"></div>
+                <div class="w-4 h-4 rounded-full bg-mint-400 animate-bounce-slow" style="animation-delay: 0.9s"></div>
+            </div>
+        </div>
+
+        <!-- Sorting Screen -->
+        <div id="sorting-screen" class="hidden w-full max-w-5xl px-4 animate-fade-in">
+            <div class="glass-kawaii rounded-[2rem] p-6 mb-10 border-4 border-white shadow-2xl">
+                <div class="h-10 bg-gradient-to-r from-pink-100 via-lavender-100 to-sky-100 rounded-full overflow-hidden border-3 border-pink-200">
+                    <div id="progress-bar" class="h-full progress-kawaii w-0 transition-all duration-500 rounded-full shadow-lg"></div>
+                </div>
+                <div id="progress-text" class="text-center mt-3 font-bold text-lg text-lavender-600"></div>
+            </div>
+
+            <div id="comparison-container" class="flex flex-col md:flex-row items-center justify-between relative gap-8">
+                <!-- Left Seiyu -->
+                <div class="seiyu-container w-full md:w-5/12 mb-6 md:mb-0 card-kawaii cursor-pointer" id="seiyu-left">
+                    <div class="group bg-gradient-to-br from-pink-50 to-lavender-50 rounded-[2rem] border-5 border-white shadow-2xl overflow-hidden transform transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,138,0.5)]">
+                        <div class="relative">
+                            <img class="seiyu-img w-full h-64 md:h-80 object-cover object-center transition-transform duration-500 group-hover:scale-110" id="img-left" src="" alt="Seiyu izquierda">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-pink-500/20 to-pink-600/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 left-4 text-4xl animate-sparkle">✨</div>
+                            <div class="absolute top-4 right-4 text-4xl animate-sparkle" style="animation-delay: 0.5s;">💫</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="seiyu-name text-2xl font-kawaii font-bold text-pink-600 text-center" id="name-left"></div>
+                            <div class="mt-3 text-sm text-lavender-500 font-semibold flex items-center justify-center">
+                                <span class="mr-2">💕</span>
+                                Haz clic para elegir
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VS Badge for desktop -->
+                <div class="hidden md:flex vs-badge-kawaii absolute left-1/2 top-1/3 transform -translate-x-1/2 w-20 h-20 rounded-full items-center justify-center z-30">
+                    <span class="text-white font-bold text-2xl">VS</span>
+                </div>
+
+                <!-- Controls -->
+                <div id="middle-controls" class="mb-6 md:mb-0 md:absolute md:top-[85%] md:left-1/2 md:transform md:-translate-x-1/2 z-20 flex md:flex-col gap-3 p-3 glass-kawaii rounded-2xl shadow-xl border-3 border-white">
+                    <button id="tie-btn" class="py-3 px-5 bg-gradient-to-r from-sky-400 to-mint-400 text-white font-bold rounded-xl shadow-lg btn-kawaii flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        Empate
+                    </button>
+                    <button id="save-btn" class="py-3 px-5 bg-gradient-to-r from-mint-400 to-mint-500 text-white font-bold rounded-xl shadow-lg btn-kawaii flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                        </svg>
+                        Guardar
+                    </button>
+                    <button id="undo-btn" class="py-3 px-5 bg-gradient-to-r from-peach-300 to-peach-400 text-white font-bold rounded-xl shadow-lg btn-kawaii flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Deshacer
+                    </button>
+                </div>
+
+                <!-- VS Badge for mobile -->
+                <div class="flex md:hidden vs-badge-kawaii mx-auto mb-6 w-16 h-16 rounded-full items-center justify-center">
+                    <span class="text-white font-bold text-xl">VS</span>
+                </div>
+
+                <!-- Right Seiyu -->
+                <div class="seiyu-container w-full md:w-5/12 card-kawaii cursor-pointer" id="seiyu-right">
+                    <div class="group bg-gradient-to-br from-lavender-50 to-sky-50 rounded-[2rem] border-5 border-white shadow-2xl overflow-hidden transform transition-all duration-300 hover:shadow-[0_0_30px_rgba(175,145,255,0.5)]">
+                        <div class="relative">
+                            <img class="seiyu-img w-full h-64 md:h-80 object-cover object-center transition-transform duration-500 group-hover:scale-110" id="img-right" src="" alt="Seiyu derecha">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-lavender-500/20 to-lavender-600/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 left-4 text-4xl animate-sparkle">💫</div>
+                            <div class="absolute top-4 right-4 text-4xl animate-sparkle" style="animation-delay: 0.5s;">✨</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="seiyu-name text-2xl font-kawaii font-bold text-lavender-600 text-center" id="name-right"></div>
+                            <div class="mt-3 text-sm text-sky-500 font-semibold flex items-center justify-center">
+                                <span class="mr-2">💕</span>
+                                Haz clic para elegir
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden w-full max-w-6xl mt-8 animate-fade-in">
+            <div id="results-container" class="glass-kawaii rounded-[2rem] p-8 mb-8 border-4 border-white shadow-2xl">
+                <div class="relative mb-10">
+                    <div class="absolute -top-16 -left-16 w-32 h-32 bg-pink-400/30 rounded-full blur-3xl animate-pulse"></div>
+                    <div class="absolute -bottom-16 -right-16 w-40 h-40 bg-lavender-400/30 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+
+                    <div class="text-center mb-8">
+                        <div class="text-7xl mb-4 animate-bounce-slow">🏆</div>
+                        <h2 class="text-5xl font-kawaii font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-lavender-500 to-sky-500 mb-3">Resultados Finales</h2>
+                        <div class="flex justify-center items-center gap-3">
+                            <div class="h-2 w-20 bg-gradient-to-r from-pink-400 to-lavender-400 rounded-full"></div>
+                            <span class="text-3xl">✨</span>
+                            <div class="h-2 w-20 bg-gradient-to-r from-lavender-400 to-sky-400 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="results-list" class="space-y-4"></div>
+
+                <div id="result-controls" class="flex flex-wrap justify-center gap-6 mt-12">
+                    <button id="restart-btn" class="py-4 px-8 bg-gradient-to-r from-pink-400 to-pink-500 text-white font-bold text-lg rounded-2xl shadow-xl btn-kawaii flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+                        </svg>
+                        💕 Volver a Inicio
+                    </button>
+                    <button id="download-results-btn" class="py-4 px-8 bg-gradient-to-r from-sky-400 to-mint-400 text-white font-bold text-lg rounded-2xl shadow-xl btn-kawaii flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        📸 Descargar Resultados
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading indicator -->
+            <div id="download-loading" class="hidden text-center py-6 glass-kawaii rounded-2xl">
+                <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-pink-200 border-t-pink-500"></div>
+                <p class="mt-4 text-lavender-600 font-bold text-lg">✨ Generando imagen mágica... ✨</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de las seiyus como array JSON incrustado en el HTML
+        const DEFAULT_SEIYUS = [
+            {
+                "id": 1,
+                "name": "Nozomi Nirei",
+                "image": "https://i.imgur.com/FH1AUSS.jpeg"
+            },
+            {
+                "id": 2,
+                "name": "Nonaka Kokona",
+                "image": "https://pfst.cf2.poecdn.net/base/image/65a441e6a74c89b372f10b2ddf2402a6ca90b664512108f25498349c6636dc5e?w=440&h=440"
+            },
+            {
+                "id": 3,
+                "name": "Hanamiya Nina",
+                "image": "https://i.imgur.com/5h5DsHD.jpeg"
+            },
+            {
+                "id": 4,
+                "name": "Sasaki Kotoko",
+                "image": "https://i.imgur.com/Udmx6tr.jpeg"
+            },
+            {
+                "id": 5,
+                "name": "Tsukine Kona",
+                "image": "https://i.imgur.com/YyC54yJ.jpeg"
+            },
+            {
+                "id": 6,
+                "name": "Kan Kana",
+                "image": "https://i.imgur.com/crNPbrW.jpeg"
+            },
+            {
+                "id": 7,
+                "name": "Sakurai Hina",
+                "image": "https://i.imgur.com/HzXAyqJ.jpeg"
+            },
+            {
+                "id": 8,
+                "name": "Hayama Fuka",
+                "image": "https://i.imgur.com/4JS8VSG.jpeg"
+            },
+            {
+                "id": 9,
+                "name": "Kurusu Rin",
+                "image": "https://i.imgur.com/jk9hR5a.jpeg"
+            },
+            {
+                "id": 10,
+                "name": "Miyake Miu",
+                "image": "https://i.imgur.com/wtD3GTt.jpeg"
+            },
+            {
+                "id": 11,
+                "name": "Shindou Amane",
+                "image": "https://i.imgur.com/zrOQj5I.jpeg"
+            }
+        ];
+
+        // Inicializar seiyus con los valores por defecto
+        let seiyus = [...DEFAULT_SEIYUS];
+
+        // Constantes para login
+        const ADMIN_USERNAME = "rine";
+        const ADMIN_PASSWORD = "Kozue";
+
+        // Variables de estado
+        let comparisons = [];
+        let currentComparison = 0;
+        let choices = [];
+        let history = [];
+        let rankedSeiyus = [];
+        let isLoggedIn = false;
+        let nextSeiyuId = 12;
+        let currentEditingSeiyuId = null;
+
+        // Función para validar URL de imágenes según el CSP
+        function isAllowedImageUrl(url) {
+            try {
+                const urlObj = new URL(url);
+                const allowedDomains = [
+                    'pfst.cf2.poecdn.net',
+                    'i.imgur.com',
+                    'picsum.photos',
+                    'images.unsplash.com',
+                    'wikimedia.org'
+                ];
+
+                return allowedDomains.some(domain => urlObj.hostname === domain ||
+                                         urlObj.hostname.endsWith('.' + domain));
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Función para obtener una imagen de placeholder en caso de URL no permitida
+        function getPlaceholderImage(id) {
+            return `https://picsum.photos/id/${id % 100}/400/400`;
+        }
+
+        // Elementos del DOM
+        const startScreen = document.getElementById('start-screen');
+        const sortingScreen = document.getElementById('sorting-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const adminScreen = document.getElementById('admin-screen');
+        const loginModal = document.getElementById('login-modal');
+        const editSeiyuModal = document.getElementById('edit-seiyu-modal');
+        const exportModal = document.getElementById('export-modal');
+        const resultsContainer = document.getElementById('results-container');
+        const downloadLoading = document.getElementById('download-loading');
+        const exportCode = document.getElementById('export-code');
+        const copyCodeBtn = document.getElementById('copy-code-btn');
+        const copySuccess = document.getElementById('copy-success');
+        const heartRain = document.getElementById('heart-rain');
+
+        const startBtn = document.getElementById('start-btn');
+        const imgLeft = document.getElementById('img-left');
+        const imgRight = document.getElementById('img-right');
+        const nameLeft = document.getElementById('name-left');
+        const nameRight = document.getElementById('name-right');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const tieBtn = document.getElementById('tie-btn');
+        const undoBtn = document.getElementById('undo-btn');
+        const saveBtn = document.getElementById('save-btn');
+        const loadBtn = document.getElementById('load-btn');
+        const fileInput = document.getElementById('file-input');
+        const restartBtn = document.getElementById('restart-btn');
+        const downloadResultsBtn = document.getElementById('download-results-btn');
+        const resultsList = document.getElementById('results-list');
+        const seiyuLeft = document.getElementById('seiyu-left');
+        const seiyuRight = document.getElementById('seiyu-right');
+
+        // Admin elements
+        const adminLoginBtn = document.getElementById('admin-login-btn');
+        const loginSubmitBtn = document.getElementById('login-submit-btn');
+        const loginCancelBtn = document.getElementById('login-cancel-btn');
+        const adminLogoutBtn = document.getElementById('admin-logout-btn');
+        const adminBackBtn = document.getElementById('admin-back-btn');
+        const adminSeiyuList = document.getElementById('admin-seiyu-list');
+        const addSeiyuBtn = document.getElementById('add-seiyu-btn');
+        const newSeiyuName = document.getElementById('new-seiyu-name');
+        const newSeiyuImage = document.getElementById('new-seiyu-image');
+        const loginError = document.getElementById('login-error');
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const exportHtmlBtn = document.getElementById('export-html-btn');
+        const exportCancelBtn = document.getElementById('export-cancel-btn');
+
+        // Edit elements
+        const editSeiyuId = document.getElementById('edit-seiyu-id');
+        const editSeiyuName = document.getElementById('edit-seiyu-name');
+        const editSeiyuImage = document.getElementById('edit-seiyu-image');
+        const editCancelBtn = document.getElementById('edit-cancel-btn');
+        const editSaveBtn = document.getElementById('edit-save-btn');
+
+        // Heart rain animation
+        function createHeartRain() {
+            heartRain.classList.remove('hidden');
+            heartRain.innerHTML = '';
+
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '💘', '❤️', '🌸', '🌺', '🌼', '✨', '⭐', '🏆', '👑'];
+            const numberOfHearts = 60;
+
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 3}s`;
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heartRain.appendChild(heart);
+            }
+
+            setTimeout(() => {
+                heartRain.classList.add('hidden');
+            }, 6000);
+        }
+
+        // Función para mostrar modal personalizado (reemplaza alert y confirm)
+        function showCustomAlert(message) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-pink-500/30 backdrop-blur-md z-[60] flex items-center justify-center animate-fade-in';
+            modal.innerHTML = `
+                <div class="glass-kawaii p-8 rounded-[2rem] max-w-md mx-4 animate-slide-up border-4 border-white shadow-2xl">
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">💕</div>
+                        <p class="text-lavender-600 font-bold text-lg mb-6">${message}</p>
+                        <button class="px-8 py-3 bg-gradient-to-r from-pink-400 to-lavender-400 text-white font-bold rounded-2xl btn-kawaii">
+                            OK ✨
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.querySelector('button').onclick = () => modal.remove();
+        }
+
+        function showCustomConfirm(message, onConfirm) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-pink-500/30 backdrop-blur-md z-[60] flex items-center justify-center animate-fade-in';
+            modal.innerHTML = `
+                <div class="glass-kawaii p-8 rounded-[2rem] max-w-md mx-4 animate-slide-up border-4 border-white shadow-2xl">
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">❓</div>
+                        <p class="text-lavender-600 font-bold text-lg mb-6">${message}</p>
+                        <div class="flex gap-4">
+                            <button class="cancel-btn flex-1 px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-2xl transition-all hover:scale-105">
+                                Cancelar
+                            </button>
+                            <button class="confirm-btn flex-1 px-6 py-3 bg-gradient-to-r from-pink-400 to-lavender-400 text-white font-bold rounded-2xl btn-kawaii">
+                                Confirmar ✨
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.querySelector('.cancel-btn').onclick = () => modal.remove();
+            modal.querySelector('.confirm-btn').onclick = () => {
+                modal.remove();
+                onConfirm();
+            };
+        }
+
+        // Inicializar la aplicación
+        function init() {
+            generateAllComparisons();
+            currentComparison = 0;
+            choices = [];
+            history = [];
+
+            showComparison();
+            updateProgress();
+        }
+
+        // Generar todas las comparaciones posibles
+        function generateAllComparisons() {
+            comparisons = [];
+            for (let i = 0; i < seiyus.length; i++) {
+                for (let j = i + 1; j < seiyus.length; j++) {
+                    comparisons.push({ a: seiyus[i].id, b: seiyus[j].id });
+                }
+            }
+
+            shuffleArray(comparisons);
+        }
+
+        // Función para mezclar un array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Mostrar la comparación actual
+        function showComparison() {
+            if (currentComparison >= comparisons.length) {
+                calculateResults();
+                return;
+            }
+
+            const comp = comparisons[currentComparison];
+            const seiyuA = seiyus.find(s => s.id === comp.a);
+            const seiyuB = seiyus.find(s => s.id === comp.b);
+
+            imgLeft.src = seiyuA.image;
+            imgRight.src = seiyuB.image;
+            nameLeft.textContent = seiyuA.name;
+            nameRight.textContent = seiyuB.name;
+        }
+
+        // Actualizar la barra de progreso
+        function updateProgress() {
+            const progress = (currentComparison / comparisons.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `✨ ${Math.round(progress)}% completado ✨`;
+        }
+
+        // Registrar una elección
+        function registerChoice(winner, loser, isTie = false) {
+            history.push({
+                comparison: comparisons[currentComparison],
+                choices: [...choices],
+                currentComparison: currentComparison
+            });
+
+            if (isTie) {
+                choices.push({ winner: winner, loser: loser });
+                choices.push({ winner: loser, loser: winner });
+            } else {
+                choices.push({ winner: winner, loser: loser });
+            }
+
+            currentComparison++;
+            updateProgress();
+
+            if (currentComparison < comparisons.length) {
+                showComparison();
+            } else {
+                calculateResults();
+            }
+        }
+
+        // Deshacer la última acción
+        function undoLastAction() {
+            if (history.length > 0) {
+                const lastState = history.pop();
+                choices = lastState.choices;
+                currentComparison = lastState.currentComparison;
+
+                showComparison();
+                updateProgress();
+            }
+        }
+
+        // Calcular los resultados finales
+        function calculateResults() {
+            const scores = {};
+            seiyus.forEach(seiyu => {
+                scores[seiyu.id] = 0;
+            });
+
+            choices.forEach(choice => {
+                scores[choice.winner]++;
+            });
+
+            rankedSeiyus = [...seiyus];
+            rankedSeiyus.sort((a, b) => scores[b.id] - scores[a.id]);
+
+            displayResults();
+            createHeartRain();
+        }
+
+        // Mostrar los resultados en pantalla
+        function displayResults() {
+            sortingScreen.style.display = 'none';
+            resultsScreen.style.display = 'block';
+
+            resultsList.innerHTML = '';
+
+            const columnsContainer = document.createElement('div');
+            columnsContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+
+            const itemsPerColumn = 5;
+            const numColumns = Math.ceil(rankedSeiyus.length / itemsPerColumn);
+
+            for (let col = 0; col < numColumns; col++) {
+                const column = document.createElement('div');
+                column.className = 'space-y-4';
+
+                const columnHeader = document.createElement('div');
+                columnHeader.className = 'text-center mb-6';
+                const startRank = col * itemsPerColumn + 1;
+                const endRank = Math.min(startRank + itemsPerColumn - 1, rankedSeiyus.length);
+                columnHeader.innerHTML = `
+                    <h3 class="text-2xl font-kawaii font-bold text-pink-600">
+                        Posiciones ${startRank}-${endRank}
+                    </h3>
+                    <div class="w-20 h-2 bg-gradient-to-r from-pink-400 to-lavender-400 rounded-full mx-auto mt-3"></div>
+                `;
+                column.appendChild(columnHeader);
+
+                for (let i = 0; i < itemsPerColumn; i++) {
+                    const index = col * itemsPerColumn + i;
+                    if (index >= rankedSeiyus.length) break;
+
+                    const seiyu = rankedSeiyus[index];
+                    const resultItem = document.createElement('div');
+
+                    if (index < 3) {
+                        resultItem.className = 'result-item flex items-center p-5 rounded-3xl bg-gradient-to-r ' +
+                                              (index === 0 ? 'from-yellow-300 to-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.5)]' :
+                                               index === 1 ? 'from-gray-300 to-gray-400 shadow-[0_0_20px_rgba(209,213,219,0.5)]' :
+                                               'from-amber-500 to-amber-600 shadow-[0_0_20px_rgba(245,158,11,0.5)]') +
+                                              ' text-white border-4 border-white transform transition-transform hover:scale-105';
+                    } else {
+                        resultItem.className = 'result-item flex items-center p-5 rounded-3xl bg-gradient-to-br from-pink-50 to-lavender-50 border-4 border-white shadow-lg hover:shadow-xl transition-all';
+                    }
+
+                    const rankDiv = document.createElement('div');
+                    rankDiv.className = 'result-rank text-3xl font-bold w-12 text-center ' +
+                                      (index < 3 ? 'text-white' : 'text-lavender-600');
+                    rankDiv.textContent = index === 0 ? '👑' : `${index + 1}`;
+
+                    const img = document.createElement('img');
+                    img.className = 'result-img w-20 h-20 object-cover rounded-full border-4 ' +
+                                  (index < 3 ? 'border-white' : 'border-pink-200');
+                    img.src = seiyu.image;
+                    img.alt = seiyu.name;
+
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'result-name text-lg font-bold ml-4 flex-grow ' +
+                                      (index < 3 ? 'text-white' : 'text-pink-600');
+                    nameDiv.textContent = seiyu.name;
+
+                    resultItem.appendChild(rankDiv);
+                    resultItem.appendChild(img);
+                    resultItem.appendChild(nameDiv);
+
+                    column.appendChild(resultItem);
+                }
+
+                columnsContainer.appendChild(column);
+            }
+
+            resultsList.appendChild(columnsContainer);
+        }
+
+        // Guardar el progreso actual
+        function saveProgress() {
+            const progressData = {
+                comparisons: comparisons,
+                currentComparison: currentComparison,
+                choices: choices,
+                history: history,
+                seiyus: seiyus
+            };
+
+            const dataStr = JSON.stringify(progressData);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+
+            const exportName = 'seiyu_sorter_progress_' + new Date().toISOString().slice(0, 10) + '.json';
+
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportName);
+            linkElement.click();
+        }
+
+        // Cargar progreso desde archivo
+        function loadProgress(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const progressData = JSON.parse(e.target.result);
+
+                    if (progressData.seiyus) {
+                        progressData.seiyus.forEach(seiyu => {
+                            if (!isAllowedImageUrl(seiyu.image)) {
+                                seiyu.image = getPlaceholderImage(seiyu.id);
+                            }
+                        });
+
+                        seiyus = progressData.seiyus;
+                        const maxId = Math.max(...seiyus.map(s => s.id));
+                        nextSeiyuId = maxId + 1;
+                    }
+
+                    comparisons = progressData.comparisons;
+                    currentComparison = progressData.currentComparison;
+                    choices = progressData.choices;
+                    history = progressData.history;
+
+                    startScreen.style.display = 'none';
+                    adminScreen.style.display = 'none';
+                    sortingScreen.style.display = 'block';
+
+                    showComparison();
+                    updateProgress();
+                } catch (error) {
+                    showCustomAlert('Error al cargar el archivo. Por favor, asegúrate de que es un archivo de progreso válido.');
+                    console.error(error);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Generar y exportar código HTML actualizado
+        function exportHtmlWithUpdatedData() {
+            const htmlContent = document.documentElement.outerHTML;
+
+            const sanitizedSeiyus = seiyus.map(s => ({
+                id: s.id,
+                name: s.name,
+                image: s.image
+            }));
+
+            const defaultSeiyusRegex = /const DEFAULT_SEIYUS = \[([\s\S]*?)\];/;
+            const formattedArray = JSON.stringify(sanitizedSeiyus, null, 4)
+                .replace(/^(\[)/, 'const DEFAULT_SEIYUS = [')
+                .replace(/(\])$/, '];')
+                .replace(/^    /gm, '            ');
+
+            exportCode.textContent = formattedArray;
+            exportModal.classList.remove('hidden');
+        }
+
+        // Función para copiar el código al portapapeles
+        function copyCodeToClipboard() {
+            const codeText = exportCode.textContent;
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(codeText)
+                    .then(() => {
+                        copySuccess.classList.remove('hidden');
+                        setTimeout(() => {
+                            copySuccess.classList.add('hidden');
+                        }, 3000);
+                    })
+                    .catch(err => {
+                        console.error('Error al copiar al portapapeles: ', err);
+                        fallbackCopyToClipboard(codeText);
+                    });
+            } else {
+                fallbackCopyToClipboard(codeText);
+            }
+        }
+
+        // Método alternativo para copiar al portapapeles
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            textArea.style.padding = 0;
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            textArea.style.background = 'transparent';
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    copySuccess.classList.remove('hidden');
+                    setTimeout(() => {
+                        copySuccess.classList.add('hidden');
+                    }, 3000);
+                }
+            } catch (err) {
+                console.error('Método alternativo de copia fallido:', err);
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        // Descargar los resultados como imagen
+        function downloadResultsAsImage() {
+            downloadLoading.classList.remove('hidden');
+
+            const options = {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#FFF5F7',
+            };
+
+            setTimeout(() => {
+                html2canvas(resultsContainer, options).then(canvas => {
+                    try {
+                        const link = document.createElement('a');
+                        link.download = 'seiyu_sorter_results_' + new Date().toISOString().slice(0, 10) + '.png';
+                        link.href = canvas.toDataURL('image/png', 1.0);
+                        link.click();
+                        downloadLoading.classList.add('hidden');
+                    } catch (error) {
+                        console.error('Error al generar la descarga:', error);
+                        showCustomAlert('Error al generar la imagen. Por favor, inténtalo de nuevo.');
+                        downloadLoading.classList.add('hidden');
+                    }
+                }).catch(error => {
+                    console.error('Error en html2canvas:', error);
+                    showCustomAlert('No se pudo generar la imagen. Es posible que algunas imágenes no se puedan cargar correctamente.');
+                    downloadLoading.classList.add('hidden');
+                });
+            }, 100);
+        }
+
+        // Mostrar la lista de seiyus en el panel de administración
+        function displayAdminSeiyuList() {
+            adminSeiyuList.innerHTML = '';
+
+            seiyus.forEach(seiyu => {
+                const card = document.createElement('div');
+                card.className = 'bg-gradient-to-br from-pink-50 to-lavender-50 rounded-3xl overflow-hidden border-4 border-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:translate-y-[-8px]';
+
+                const img = document.createElement('img');
+                img.src = seiyu.image;
+                img.alt = seiyu.name;
+                img.className = 'w-full h-48 object-cover';
+
+                const content = document.createElement('div');
+                content.className = 'p-5';
+
+                const name = document.createElement('div');
+                name.className = 'font-bold text-lg text-pink-600 mb-1';
+                name.textContent = seiyu.name;
+
+                const actions = document.createElement('div');
+                actions.className = 'mt-4 flex justify-between items-center text-xs';
+
+                const idTag = document.createElement('span');
+                idTag.className = 'bg-lavender-100 text-lavender-600 px-3 py-1 rounded-full font-bold';
+                idTag.textContent = `ID: ${seiyu.id}`;
+
+                const btnContainer = document.createElement('div');
+                btnContainer.className = 'flex space-x-2';
+
+                const editBtn = document.createElement('button');
+                editBtn.className = 'text-sky-500 hover:text-sky-600 p-2 rounded-xl hover:bg-sky-100 transition-all';
+                editBtn.innerHTML = `
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                `;
+                editBtn.addEventListener('click', () => {
+                    openEditModal(seiyu);
+                });
+
+                btnContainer.appendChild(editBtn);
+
+                if (seiyu.id >= 12) {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'text-pink-500 hover:text-pink-600 p-2 rounded-xl hover:bg-pink-100 transition-all';
+                    deleteBtn.innerHTML = `
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    `;
+                    deleteBtn.addEventListener('click', () => {
+                        showCustomConfirm(`¿Seguro que quieres eliminar a ${seiyu.name}?`, () => {
+                            seiyus = seiyus.filter(s => s.id !== seiyu.id);
+                            displayAdminSeiyuList();
+                        });
+                    });
+                    btnContainer.appendChild(deleteBtn);
+                }
+
+                actions.appendChild(idTag);
+                actions.appendChild(btnContainer);
+
+                content.appendChild(name);
+                content.appendChild(actions);
+
+                card.appendChild(img);
+                card.appendChild(content);
+
+                adminSeiyuList.appendChild(card);
+            });
+        }
+
+        // Abrir modal de edición
+        function openEditModal(seiyu) {
+            currentEditingSeiyuId = seiyu.id;
+            editSeiyuId.value = seiyu.id;
+            editSeiyuName.value = seiyu.name;
+            editSeiyuImage.value = seiyu.image;
+            editSeiyuModal.classList.remove('hidden');
+        }
+
+        // Guardar cambios de edición
+        function saveSeiyuEdit() {
+            const id = parseInt(editSeiyuId.value);
+            const name = editSeiyuName.value.trim();
+            const imageUrl = editSeiyuImage.value.trim();
+
+            if (!name || !imageUrl) {
+                showCustomAlert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            if (!isAllowedImageUrl(imageUrl)) {
+                showCustomAlert('La URL de la imagen no está permitida por la política de seguridad. Por favor, usa una imagen de los dominios sugeridos.');
+                return;
+            }
+
+            const seiyuIndex = seiyus.findIndex(s => s.id === id);
+            if (seiyuIndex !== -1) {
+                seiyus[seiyuIndex].name = name;
+                seiyus[seiyuIndex].image = imageUrl;
+
+                displayAdminSeiyuList();
+                editSeiyuModal.classList.add('hidden');
+
+                showCustomAlert('¡Seiyu actualizada con éxito! Recuerda exportar el HTML para guardar los cambios permanentemente.');
+            }
+        }
+
+        // Añadir una nueva seiyu
+        function addNewSeiyu() {
+            const name = newSeiyuName.value.trim();
+            const imageUrl = newSeiyuImage.value.trim();
+
+            if (!name || !imageUrl) {
+                showCustomAlert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            if (!isAllowedImageUrl(imageUrl)) {
+                showCustomAlert('La URL de la imagen no está permitida por la política de seguridad. Por favor, usa una imagen de los dominios sugeridos.');
+                return;
+            }
+
+            const newSeiyu = {
+                id: nextSeiyuId++,
+                name: name,
+                image: imageUrl
+            };
+
+            seiyus.push(newSeiyu);
+            displayAdminSeiyuList();
+
+            newSeiyuName.value = '';
+            newSeiyuImage.value = '';
+
+            showCustomAlert(`¡Seiyu ${name} añadida con éxito! Recuerda exportar el HTML para guardar los cambios permanentemente.`);
+        }
+
+        // Función para manejar el login
+        function handleLogin() {
+            const user = username.value.trim();
+            const pass = password.value;
+
+            if (user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
+                isLoggedIn = true;
+                loginModal.classList.add('hidden');
+                startScreen.style.display = 'none';
+                adminScreen.style.display = 'block';
+
+                displayAdminSeiyuList();
+
+                username.value = '';
+                password.value = '';
+                loginError.classList.add('hidden');
+            } else {
+                loginError.classList.remove('hidden');
+                password.value = '';
+            }
+        }
+
+        // Event listeners
+        startBtn.addEventListener('click', () => {
+            startScreen.style.display = 'none';
+            sortingScreen.style.display = 'block';
+            init();
+        });
+
+        seiyuLeft.addEventListener('click', () => {
+            const comp = comparisons[currentComparison];
+            registerChoice(comp.a, comp.b);
+        });
+
+        seiyuRight.addEventListener('click', () => {
+            const comp = comparisons[currentComparison];
+            registerChoice(comp.b, comp.a);
+        });
+
+        tieBtn.addEventListener('click', () => {
+            const comp = comparisons[currentComparison];
+            registerChoice(comp.a, comp.b, true);
+        });
+
+        undoBtn.addEventListener('click', undoLastAction);
+        saveBtn.addEventListener('click', saveProgress);
+
+        loadBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', loadProgress);
+
+        restartBtn.addEventListener('click', () => {
+            resultsScreen.style.display = 'none';
+            startScreen.style.display = 'flex';
+        });
+
+        downloadResultsBtn.addEventListener('click', downloadResultsAsImage);
+
+        // Admin event listeners
+        adminLoginBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+        });
+
+        loginSubmitBtn.addEventListener('click', handleLogin);
+
+        password.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
+
+        loginCancelBtn.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+            username.value = '';
+            password.value = '';
+            loginError.classList.add('hidden');
+        });
+
+        adminLogoutBtn.addEventListener('click', () => {
+            isLoggedIn = false;
+            adminScreen.style.display = 'none';
+            startScreen.style.display = 'flex';
+        });
+
+        adminBackBtn.addEventListener('click', () => {
+            adminScreen.style.display = 'none';
+            startScreen.style.display = 'flex';
+        });
+
+        addSeiyuBtn.addEventListener('click', addNewSeiyu);
+
+        // Edit modal event listeners
+        editCancelBtn.addEventListener('click', () => {
+            editSeiyuModal.classList.add('hidden');
+        });
+
+        editSaveBtn.addEventListener('click', saveSeiyuEdit);
+
+        // Export HTML event listeners
+        exportHtmlBtn.addEventListener('click', exportHtmlWithUpdatedData);
+        exportCancelBtn.addEventListener('click', () => {
+            exportModal.classList.add('hidden');
+        });
+        copyCodeBtn.addEventListener('click', copyCodeToClipboard);
+
+        // Precargar imágenes
+        window.onload = function() {
+            seiyus.forEach(seiyu => {
+                const img = new Image();
+                img.src = seiyu.image;
+            });
+        };
+    </script>
+
+
+
+</body></html>
